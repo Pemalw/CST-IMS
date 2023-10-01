@@ -1,32 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
+import AppointmentForm from '../components/AppointmentForm';
+import TrackAppointment from '../components/TrackAppointment';
 
 const Appointment = () => {
+  const [activeTab, setActiveTab] = useState('appointmentForm'); // Set the default tab to 'appointmentForm'
+
+  // Define the content for each tab
+  const tabContent = {
+    appointmentForm: (
+      <div>
+        <AppointmentForm />
+      </div>
+    ),
+    trackAppointment: (
+      <div>
+        <TrackAppointment />
+      </div>
+    ),
+  };
+
   return (
     <div>
-      {/* Navbar-to add as a component */}
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">CST Infirmry</a>
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/HealthAwareness">Health Awareness</Link></li>
-            <li><Link to="/Appointment">Appointment</Link></li>
-            <li><Link to="/MedicalReport">Medical Report</Link></li>
-            <li><Link to="/About">About Us</Link></li>
-          </ul>
-        </div>
+      <div className="tabs flex justify-center w-full mt-16 size-xl">
+        <a 
+          className={`tab tab-lg  font-bold ${activeTab === 'appointmentForm' ? 'tab-active bg-indigo-100 border-t border-top-black' : 'tab-lifted'} w-1/2`}
+          onClick={() => setActiveTab('appointmentForm')}
+        >
+          Appointment Form
+        </a>
+        <a
+          className={`tab tab-lg font-bold ${activeTab === 'trackAppointment' ? 'tab-active bg-indigo-100 border-t border-top-black' : 'tab-lifted'} w-1/2`}
+          onClick={() => setActiveTab('trackAppointment')}
+        >
+          Track Appointment
+        </a>
       </div>
 
-      <div className="tabs flex justify-center mt-16 size-xl">
-        <a className="tab tab-lg tab-lifted tab-active w-1/2">Appointment Form</a> 
-        <a className="tab tab-lg tab-lifted w-1/2">Track Appointment</a> 
+      {/* Display content based on active tab */}
+      <div className="content">
+        {tabContent[activeTab]}
       </div>
     </div>
-  )
+  );
 }
 
-export default Appointment
+export default Appointment;
