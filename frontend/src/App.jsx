@@ -1,16 +1,21 @@
 
 import './App.css'
 import "./index.css"
+import React from 'react'
+import HomePage from "./pages/HomePage"
+import DashBoard from "./pages/DashBoard"
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <>
-    <h1 className='text-xl'>Hello World</h1>
-    <div className='flex flex-row'>
-      Hello this is cool
-      <div className='h-[50px] w-[50px] bg-[#444444]'> uu </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+      </Routes>
+    </Router>
     </>
   )
 }
