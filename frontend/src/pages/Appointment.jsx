@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+
+const Appointment = () => {
   return (
     <div>
       {/* Navbar-to add as a component */}
@@ -19,8 +20,13 @@ const HomePage = () => {
           </ul>
         </div>
       </div>
+
+      <div className="tabs flex justify-center mt-16 size-xl">
+        <a className="tab tab-lg tab-lifted tab-active w-1/2">Appointment Form</a> 
+        <a className="tab tab-lg tab-lifted w-1/2">Track Appointment</a> 
+      </div>
     </div>
-    );
+  )
 }
 
-export default HomePage
+export default Appointment
