@@ -9,21 +9,71 @@ import MedicalReport from "./pages/MedicalReport"
 import About from "./pages/About"
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
+import AdminNavbar from './components/adminNavbar'
 import Footer from './components/Footer'
+
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <Navbar>
+        {children} 
+      </Navbar>
+    </div>
+  );
+};
+
+const Layout1 = ({ children }) => {
+  return (
+    <div>
+      <AdminNavbar>
+        {children} 
+      </AdminNavbar>
+    </div>
+  );
+};
 
 function App() {
 
   return (
     <>
     <Router>
-      <Navbar />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<DashBoard />} />
-        <Route path="/health-awareness" element={<HealthAwareness />} />
-        <Route path="/appointment" element={<Appointment />} />
-        <Route path="/medical-report" element={<MedicalReport />} />
-        <Route path="/about" element={<About />} />
+        <Route  exact path="/" 
+                element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              } />
+        <Route  path="/dashboard" 
+                element={
+                  <Layout1>
+                    <DashBoard />
+                  </Layout1>
+                } />
+        <Route  path="/health-awareness" 
+                element={
+                  <Layout>
+                    <HealthAwareness />
+                  </Layout>
+                } />
+        <Route  path="/appointment" 
+                element={
+                  <Layout>
+                    <Appointment />
+                  </Layout>
+                } />
+        <Route  path="/medical-report" 
+                element={
+                  <Layout>
+                    <MedicalReport />
+                  </Layout>
+                } />
+        <Route  path="/about" 
+                element={
+                  <Layout>
+                    <About />
+                  </Layout>
+                } />
       </Routes>
       <Footer />
     </Router>
