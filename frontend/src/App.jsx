@@ -12,6 +12,7 @@ import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/Single"
 import Write from "./pages/AdminPost"
+import LoginForm from "./components/LoginForm"
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,13 @@ const router = createBrowserRouter([
     errorElement:<h1 className="flex">Opps</h1>,
   
   },
+  {
+    path: "/login",
+    element: <NavbarLayout><LoginForm /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>,
+  
+  },
+  
 
 ]);
 
