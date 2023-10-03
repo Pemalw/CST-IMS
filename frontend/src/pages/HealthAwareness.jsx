@@ -1,9 +1,23 @@
 import React from 'react'
+import Post from "../components/posts/Posts";
+import "./HealthAwareness.css";
 
-const HealthAwareness = () => {
+
+export default function Single() {
   return (
-    <div>HealthAwareness</div>
-  )
+    
+    <div className="single">
+      < Post />
+    </div>
+    
+  );
 }
 
-export default HealthAwareness
+
+// const HealthAwareness = () => {
+//   return (
+//     <div>HealthAwareness</div>
+//   )
+// }
+
+// export default HealthAwareness
