@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AppointmentForm from '../components/AppointmentForm';
 import TrackAppointment from '../components/TrackAppointment';
 import Navbar from '../components/Navbar';
+import SlotChecker from '../components/SlotChecker';
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState('appointmentForm'); // Set the default tab to 'appointmentForm'
@@ -10,7 +11,8 @@ const Appointment = () => {
   // Define the content for each tab
   const tabContent = {
     appointmentForm: (
-      <div>
+      <div className='bg-indigo-100 flex flex-col item-center'>
+        <SlotChecker/>
         <AppointmentForm />
       </div>
     ),
