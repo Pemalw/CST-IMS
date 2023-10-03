@@ -11,7 +11,7 @@ import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/Single"
-import SlotChecker from "./components/SlotChecker"
+import Write from "./pages/AdminPost"
 
 
 const router = createBrowserRouter([
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
   
   {
     path: "/adminPost",
-    element: <AdminPost />,
+    element: <Write />,
     errorElement:<h1 className="flex">Opps</h1>
   },
   {
