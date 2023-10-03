@@ -5,6 +5,7 @@ import HotAppointmentTable from '../components/HotAppointmentTable';
 import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
 import Inventory from '../components/Inventory.jsx';
+import AdminBlog from '../components/AdminBlog';
 
 const DashBoard = () => {
 
@@ -50,6 +51,10 @@ const DashBoard = () => {
 
         {currentComponent === 'Inventories' && (
           <Inventory />
+        )}
+
+        {currentComponent === 'AdminBlog' && (
+          <AdminBlog />
         )}
       </div>
 
