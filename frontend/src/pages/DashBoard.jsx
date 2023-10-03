@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from '../components/Table';
 import AddPatientRecord from '../components/AddPatientsRecord';
 import HotAppointmentTable from '../components/HotAppointmentTable';
@@ -6,6 +6,13 @@ import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
 
 const DashBoard = () => {
+
+  const [currentComponent, setCurrentComponent] = useState("Appointment");
+
+  const handleSideBarLinkClick = (componentName) => {
+    setCurrentComponent(componentName);
+  };
+
 
   const headers = ['Name','Time', 'Gender', 'Age','CID', 'Contact', 'Email']; // Example headers
   const data = [
@@ -24,17 +31,25 @@ const DashBoard = () => {
   ];
 
   return (
-    
-   <>
-   <AdminNavbar />
+    <div className="bg-gray-100">
+      <AdminNavbar onClick={handleSideBarLinkClick} />
+      
+      <div className="my-10">
+        {/* Conditionally render components based on selectedOption */}
+        {currentComponent === 'PatientRecords' && (
+          <>
+            <Table headers={headers} data={data} captions={'Patient List'} className="table-auto table-zebra bg-white"/>
+            <AddPatientRecord />
+          </>
+        )}
 
-    <Table headers={headers} data={data} captions={"Patient List"}/>
-    <AddPatientRecord/>
-    <HotAppointmentTable data={data1}/>
+        {currentComponent === 'Appointment' && (
+          <HotAppointmentTable data={data1} />
+        )}
+      </div>
 
-    <Footer />
-    </>
-    
+       <Footer />
+    </div>
   )
 }
 

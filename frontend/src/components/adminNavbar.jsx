@@ -1,17 +1,16 @@
 import React from 'react'
 import { BiSolidUserCircle } from "react-icons/bi";
 
-const adminNavbar = () => {
+const adminNavbar = ({ onClick }) => {
   return (
     <div>
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 border border-b">
           <div className="navbar-start">
             <div className="dropdown">
               
               <div className="drawer">
                   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                   <div className="drawer-content">
-                    {/* Page content here */}
                     <label htmlFor="my-drawer" tabIndex={0} className="btn btn-ghost btn-circle drawer-button">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                     </label>
@@ -20,9 +19,11 @@ const adminNavbar = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                       {/* Sidebar content here */}
-
-                      <li><a>Patient Records</a></li>
-                      <li><a>Awareness Programs</a></li>
+                      
+                      <li><a onClick={() => onClick("Appointment")}>Appointment</a></li>
+                      <li><a onClick={() => onClick("Inventories")}>Inventories</a></li>
+                      <li><a onClick={() => onClick("PatientRecords")}>Patient Records</a></li>
+                      <li><a onClick={() => onClick("AwarenessPrograms")}>Awareness Programs</a></li>
                     </ul>
                   </div>
                 </div>

@@ -3,13 +3,13 @@ import React from 'react';
 function Table({ headers, data, captions }) {
 
   return (
-    <div>
-        <table className="table-auto">
-            <caption className='text-left font-bold drop-shadow-4'>{captions}</caption>
+    <div className="flex justify-center my-16">
+        <table className="table-auto w-5/6">
+            <caption className='text-left text-xl font-bold drop-shadow-4 mb-10'>{captions}</caption>
             <thead className='thead-light border-b-2'>
                 <tr>
                 {headers.map((header, index) => (
-                    <th key={index}>{header}</th>
+                    <th key={index} className="p-3 text-left">{header}</th>
                 ))}
                 </tr>
             </thead>
