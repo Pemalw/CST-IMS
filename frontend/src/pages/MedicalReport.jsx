@@ -2,7 +2,7 @@ import React from 'react'
 
 export const MedicalReport = () => {
   return (
-    <div class="container h-screen w-screen bg-base-200">
+    <div class="container h-screen bg-base-200">
 
     <div class="container mx-auto">
     <div class="bg-[#61AAC5] w-70 h-20 mt-4  flex items-center justify-center shadow-lg rounded-lg">

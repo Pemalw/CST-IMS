@@ -1,13 +1,13 @@
 import React from 'react'
-import Post from "../components/posts/Posts";
-import "./HealthAwareness.css";
+import Posts from "../components/Posts";
+// import "./HealthAwareness.css";
 
 
 export default function Single() {
   return (
     
-    <div className="single">
-      < Post />
+    <div className="single flex bg-gray-200 items-center ">
+      < Posts />
     </div>
     
   );

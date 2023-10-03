@@ -6,9 +6,9 @@ export default function Write() {
   return (
 
     
-    <div className="write flex flex-col justify-items-center">
+    <div className="write pt-20 bg-gray-200">
       <img
-        className="writeImg"
+        className="writeImg w-70vw h-32 rounded-2xl object-cover ml-12"
         src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
         alt=""
       />
@@ -16,7 +16,7 @@ export default function Write() {
 
       <form className="writeForm">
         <label htmlFor="fileInput">
-          <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
+          <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs relative " />
           {/* <i className="writeIcon fas fa-plus"></i> */}
         </label>
 
