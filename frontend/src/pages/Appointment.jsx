@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import AppointmentForm from '../components/AppointmentForm';
 import TrackAppointment from '../components/TrackAppointment';
 import SlotChecker from '../components/SlotChecker';
@@ -10,13 +10,13 @@ const Appointment = () => {
   // Define the content for each tab
   const tabContent = {
     appointmentForm: (
-      <div className="bg-[#bcdbe6] flex flex-col items-center p-4 lg:p-8">
-        <SlotChecker />
+      <div className='bg-[#bcdbe6] flex flex-col item-center'>
+        <SlotChecker/>
         <AppointmentForm />
       </div>
     ),
     trackAppointment: (
-      <div className="p-4 lg:p-8">
+      <div>
         <TrackAppointment />
       </div>
     ),
@@ -24,23 +24,16 @@ const Appointment = () => {
 
   return (
     <div>
-      <div className="tabs flex justify-center w-full mt-16">
-        <a
-          className={`tab tab-lg font-bold ${
-            activeTab === 'appointmentForm'
-              ? 'tab-active bg-[#bcdbe6] border-t border-top-black'
-              : 'tab-lifted'
-          } w-1/2 lg:w-auto`}
+      
+      <div className="tabs flex justify-center w-full mt-16 size-xl">
+        <a 
+          className={`tab tab-lg  font-bold ${activeTab === 'appointmentForm' ? 'tab-active bg-[#bcdbe6] border-t border-top-black' : 'tab-lifted'} w-1/2`}
           onClick={() => setActiveTab('appointmentForm')}
         >
           Appointment Form
         </a>
         <a
-          className={`tab tab-lg font-bold ${
-            activeTab === 'trackAppointment'
-              ? 'tab-active bg-[#bcdbe6] border-t border-top-black'
-              : 'tab-lifted'
-          } w-1/2 lg:w-auto`}
+          className={`tab tab-lg font-bold ${activeTab === 'trackAppointment' ? 'tab-active bg-[#bcdbe6] border-t border-top-black' : 'tab-lifted'} w-1/2`}
           onClick={() => setActiveTab('trackAppointment')}
         >
           Track Appointment
@@ -48,9 +41,11 @@ const Appointment = () => {
       </div>
 
       {/* Display content based on active tab */}
-      <div className="content">{tabContent[activeTab]}</div>
+      <div className="content">
+        {tabContent[activeTab]}
+      </div>
     </div>
   );
-};
+}
 
 export default Appointment;
