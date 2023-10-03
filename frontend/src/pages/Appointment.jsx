@@ -11,7 +11,7 @@ const Appointment = () => {
   // Define the content for each tab
   const tabContent = {
     appointmentForm: (
-      <div className='bg-indigo-100 flex flex-col item-center'>
+      <div className='bg-[#bcdbe6] flex flex-col item-center'>
         <SlotChecker/>
         <AppointmentForm />
       </div>
