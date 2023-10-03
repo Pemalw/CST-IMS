@@ -4,9 +4,11 @@ import { BiEdit, BiTrash } from 'react-icons/bi';
 const Inventory = () => {
   // Sample inventory data
   const initialInventory = [
-    { id: 1, name: 'Bandages', quantity: 100, price: 1.99 },
-    { id: 2, name: 'Painkillers', quantity: 50, price: 4.99 },
-    { id: 3, name: 'First Aid Kits', quantity: 20, price: 9.99 },
+    { id: 1, name: 'Bandages', quantity: 100, expiryDate: '2023-12-31' },
+    { id: 2, name: 'Painkillers', quantity: 50, expiryDate: '2023-10-15' },
+    { id: 3, name: 'First Aid Kits', quantity: 20, expiryDate: '2024-05-20' },
+    { id: 4, name: 'Adhesive Tape', quantity: 25, expiryDate: '2023-11-30' },
+    { id: 5, name: 'Disposable Gloves', quantity: 30, expiryDate: '2023-12-10' },
   ];
 
   const [inventory, setInventory] = useState(initialInventory);
@@ -15,7 +17,7 @@ const Inventory = () => {
   const [newInventoryItem, setNewInventoryItem] = useState({
     name: '',
     quantity: 0,
-    price: 0.0,
+    expiryDate: '',
   });
 
   const handleInputChange = (e) => {
@@ -40,7 +42,7 @@ const Inventory = () => {
     setNewInventoryItem({
       name: '',
       quantity: 0,
-      price: 0.0,
+      expiryDate: '',
     });
   };
 
@@ -70,7 +72,7 @@ const Inventory = () => {
             <tr className="font-bold text-lg border-b-black">
               <th>Name</th>
               <th>Quantity</th>
-              <th>Price</th>
+              <th>Expiry Date</th>
               <th></th>
             </tr>
           </thead>
@@ -110,17 +112,16 @@ const Inventory = () => {
                 <td>
                   {editingItem === item ? (
                     <input
-                      type="number"
-                      step="0.01"
+                      type="date"
                       className="input input-sm"
-                      name="price"
-                      value={item.price}
+                      name="expiryDate"
+                      value={item.expiryDate}
                       onChange={(e) =>
-                        setEditingItem({ ...item, price: e.target.value })
+                        setEditingItem({ ...item, expiryDate: e.target.value })
                       }
                     />
                   ) : (
-                    `$${item.price.toFixed(2)}`
+                    item.expiryDate
                   )}
                 </td>
                 <div className="flex justify-end">
@@ -160,7 +161,7 @@ const Inventory = () => {
         <h3 className="text-lg font-semibold mr-4 pt-2">Add New Inventory Item:</h3>
         <div className="flex space-x-2">
           <input
-            type="text"x
+            type="text"
             name="name"
             placeholder="Name"
             className="input"
@@ -176,18 +177,17 @@ const Inventory = () => {
             onChange={handleInputChange}
           />
           <input
-            type="number"
-            step="0.01"
-            name="price"
-            placeholder="Price"
+            type="date"
+            name="expiryDate"
+            placeholder="Expiry Date"
             className="input"
-            value={newInventoryItem.price}
+            value={newInventoryItem.expiryDate}
             onChange={handleInputChange}
           />
           <button
             className="btn btn-primary"
             onClick={handleAddItem}
-            disabled={!newInventoryItem.name || newInventoryItem.quantity <= 0 || newInventoryItem.price <= 0}
+            disabled={!newInventoryItem.name || newInventoryItem.quantity <= 0 || !newInventoryItem.expiryDate}
           >
             Add
           </button>

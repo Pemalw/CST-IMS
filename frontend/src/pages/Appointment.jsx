@@ -26,13 +26,13 @@ const Appointment = () => {
       
       <div className="tabs flex justify-center w-full mt-16 size-xl">
         <a 
-          className={`tab tab-lg  font-bold ${activeTab === 'appointmentForm' ? 'tab-active bg-indigo-100 border-t border-top-black' : 'tab-lifted'} w-1/2`}
+          className={`tab tab-lg  font-bold ${activeTab === 'appointmentForm' ? 'tab-active bg-[#bcdbe6] border-t border-top-black' : 'tab-lifted'} w-1/2`}
           onClick={() => setActiveTab('appointmentForm')}
         >
           Appointment Form
         </a>
         <a
-          className={`tab tab-lg font-bold ${activeTab === 'trackAppointment' ? 'tab-active bg-indigo-100 border-t border-top-black' : 'tab-lifted'} w-1/2`}
+          className={`tab tab-lg font-bold ${activeTab === 'trackAppointment' ? 'tab-active bg-[#bcdbe6] border-t border-top-black' : 'tab-lifted'} w-1/2`}
           onClick={() => setActiveTab('trackAppointment')}
         >
           Track Appointment

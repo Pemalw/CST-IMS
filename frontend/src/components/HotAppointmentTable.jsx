@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function HotAppointmentTable({ data }) {
+  const [appointmentData, setAppointmentData] = useState(data);
+
+  const handleStateChange = (rowIndex, newState) => {
+    const updatedData = [...appointmentData];
+    updatedData[rowIndex].State = newState;
+    setAppointmentData(updatedData);
+  };
+
   return (
     <div className="flex justify-center">
       <table className="table-auto table-zebra bg-white rounded-lg w-4/5">
@@ -12,17 +20,17 @@ function HotAppointmentTable({ data }) {
           </tr>
         </thead>
         <tbody className="tbody-light">
-          {data.map((row, rowIndex) => (
+          {appointmentData.map((row, rowIndex) => (
             <tr key={rowIndex}>
               <td className="font-light border-b p-4">{row.Name}</td>
               <td className="font-light border-b p-4">{row.Time}</td>
               <td className="font-light border-b p-4">
-                {row.State === 'yes' ? (
-                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                {row.State === 'came' ? (
+                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleStateChange(rowIndex, 'did not come')}>
                     Came
                   </button>
                 ) : (
-                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleStateChange(rowIndex, 'came')}>
                     Did Not Come
                   </button>
                 )}

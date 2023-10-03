@@ -2,7 +2,7 @@ import React from 'react'
 
 const AppointmentForm = () => {
   return (
-    <div className="flex justify-center bg-indigo-100 h-screen w-full">
+    <div className="flex justify-center bg-[#bcdbe6] h-screen w-full">
         <div className="bg-white m-20 h-4/5 w-4/6 rounded-xl">
             <div className="text-center mt-16 text-2xl font-bold">Appointment Form</div>
             <form className="flex justify-center">
@@ -29,7 +29,7 @@ const AppointmentForm = () => {
                         <input type="time" placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="flex justify-center">
-                        <button className="btn bg-indigo-200 hover:bg-gradient-to-r from-indigo-900 to-indigo-700 hover:text-white w-32">Register</button>
+                        <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32">Register</button>
                     </div>
                 </div>
             </form>

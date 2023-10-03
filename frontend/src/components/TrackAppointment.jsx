@@ -2,7 +2,7 @@ import React from 'react'
 
 const TrackAppointment = () => {
   return (
-    <div className="flex justify-center bg-indigo-100 h-screen w-full">
+    <div className="flex justify-center bg-[#bcdbe6] h-screen w-full">
         <div className="bg-white m-20 h-auto w-4/6 rounded-xl">
             <div className="text-center mt-16 text-2xl font-bold">Track Appointment</div>
             <div className="flex justify-center mt-16">
