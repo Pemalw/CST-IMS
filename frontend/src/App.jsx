@@ -11,7 +11,7 @@ import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/Single"
-import Write from "./pages/AdminPost"
+import AdminBlog from "./components/AdminBlog"
 
 
 const router = createBrowserRouter([
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
   },
   
   {
-    path: "/adminPost",
-    element: <Write />,
+    path: "/adminBlog",
+    element: <AdminBlog/>,
     errorElement:<h1 className="flex">Opps</h1>
   },
   {

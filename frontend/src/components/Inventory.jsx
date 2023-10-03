@@ -64,7 +64,7 @@ const Inventory = () => {
   };
 
   return (
-    <div className="p-4 flex flex-col justify-center">
+    <div className="p-4 h-screen">
       <h2 className="text-2xl font-semibold mb-4 text-center mb-16">Inventories</h2>
       <div className="flex justify-center">
         <table className="table w-4/5">
