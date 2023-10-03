@@ -7,9 +7,6 @@ import HealthAwareness from "./pages/HealthAwareness"
 import Appointment from "./pages/Appointment"
 import MedicalReport from "./pages/MedicalReport"
 import About from "./pages/About"
-import Navbar from './components/Navbar'
-import AdminNavbar from './components/adminNavbar'
-import Footer from './components/Footer'
 import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
