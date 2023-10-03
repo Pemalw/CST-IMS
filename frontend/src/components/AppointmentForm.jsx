@@ -3,7 +3,7 @@ import React from 'react'
 const AppointmentForm = () => {
   return (
     <div className="flex justify-center bg-indigo-100 h-screen w-full">
-        <div className="bg-white m-20 h-4/5 w-4/6 rounded-xl">
+        <div className="bg-white mt-5 mb-20 h-4/5 w-4/6 rounded-xl">
             <div className="text-center mt-16 text-2xl font-bold">Appointment Form</div>
             <form className="flex justify-center">
                 <div className="flex flex-col space-y-10 mt-16">

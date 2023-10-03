@@ -11,6 +11,7 @@ import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/singlePost/Single"
+import SlotChecker from "./components/SlotChecker"
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
     errorElement:<h1 className="flex">Opps</h1>,
   
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
