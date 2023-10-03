@@ -4,6 +4,7 @@ import AddPatientRecord from '../components/AddPatientsRecord';
 import HotAppointmentTable from '../components/HotAppointmentTable';
 import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
+import Inventory from '../components/Inventory.jsx';
 
 const DashBoard = () => {
 
@@ -38,13 +39,17 @@ const DashBoard = () => {
         {/* Conditionally render components based on selectedOption */}
         {currentComponent === 'PatientRecords' && (
           <>
-            <Table headers={headers} data={data} captions={'Patient List'} className="table-auto table-zebra bg-white"/>
+            <Table headers={headers} data={data} captions={'Patient List'}/>
             <AddPatientRecord />
           </>
         )}
 
         {currentComponent === 'Appointment' && (
           <HotAppointmentTable data={data1} />
+        )}
+
+        {currentComponent === 'Inventories' && (
+          <Inventory />
         )}
       </div>
 

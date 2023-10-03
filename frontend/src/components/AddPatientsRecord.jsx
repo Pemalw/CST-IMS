@@ -3,10 +3,11 @@ import React from 'react';
 function AddPatientRecord() {
 
   return (
-    <div>
-        <div className='border-2 w-5/6 shadow-md bg-slate-50 felx justify-center'>
-            <h1 className='text-start p-5 font-bold '>Add Patient Records</h1>
-            <p className='px-20 my-5 text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam repudiandae sequi commodi sint, nobis, 
+
+    <div className="flex justify-center">
+        <div className='border-2 w-5/6 shadow-md bg-slate-50'>
+            <h1 className='text-lg p-5 font-bold'>Add Patient Records</h1>
+            <p className='px-20'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam repudiandae sequi commodi sint, nobis, 
                 amet dignissimos accusantium consequatur nesciunt, fugit facere voluptatum libero magni impedit error 
                 blanditiis placeat tenetur harum.</p>
                 <form className="flex flex-row my-10">
