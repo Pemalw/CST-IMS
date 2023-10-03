@@ -10,7 +10,8 @@ import About from "./pages/About"
 import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
-import SinglePost from "./components/singlePost/Single"
+import SinglePost from "./components/Single"
+import AdminPost from "./pages/AdminPost"
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <DashBoard />,
+    errorElement:<h1 className="flex">Opps</h1>
+  },
+  
+  {
+    path: "/adminPost",
+    element: <AdminPost />,
     errorElement:<h1 className="flex">Opps</h1>
   },
   {
