@@ -2,6 +2,8 @@ import React from 'react';
 import Table from '../components/Table';
 import AddPatientRecord from '../components/AddPatientsRecord';
 import HotAppointmentTable from '../components/HotAppointmentTable';
+import AdminNavbar from '../components/adminNavbar';
+import Footer from '../components/Footer';
 
 const DashBoard = () => {
 
@@ -24,9 +26,13 @@ const DashBoard = () => {
   return (
     
    <>
+   <AdminNavbar />
+
     <Table headers={headers} data={data} captions={"Patient List"}/>
     <AddPatientRecord/>
     <HotAppointmentTable data={data1}/>
+
+    <Footer />
     </>
     
   )

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import AppointmentForm from '../components/AppointmentForm';
 import TrackAppointment from '../components/TrackAppointment';
+import Navbar from '../components/Navbar';
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState('appointmentForm'); // Set the default tab to 'appointmentForm'
@@ -22,6 +23,7 @@ const Appointment = () => {
 
   return (
     <div>
+      
       <div className="tabs flex justify-center w-full mt-16 size-xl">
         <a 
           className={`tab tab-lg  font-bold ${activeTab === 'appointmentForm' ? 'tab-active bg-indigo-100 border-t border-top-black' : 'tab-lifted'} w-1/2`}
