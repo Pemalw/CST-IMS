@@ -13,35 +13,49 @@ import Footer from './components/Footer'
 import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import SinglePost from "./components/singlePost/Single"
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavbarLayout><HomePage /></NavbarLayout>
+    element: <NavbarLayout><HomePage /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>
+  
   },
   {
     path: "/about",
-    element: <NavbarLayout><About /></NavbarLayout>
+    element: <NavbarLayout><About /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>
   },
   {
     path: "/appointment",
-    element: <NavbarLayout><Appointment /></NavbarLayout>
+    element: <NavbarLayout><Appointment /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>
 
   },
   {
     path: "/health-awareness",
-    element: <NavbarLayout><HealthAwareness /></NavbarLayout>
-
+    element: <NavbarLayout><HealthAwareness /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>,
+  
   },
   {
     path: "/medical-report",
-    element: <NavbarLayout><MedicalReport /></NavbarLayout>
+    element: <NavbarLayout><MedicalReport /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>
 
   },
   {
     path: "/admin",
-    element: <DashBoard />
+    element: <DashBoard />,
+    errorElement:<h1 className="flex">Opps</h1>
+  },
+  {
+    path: "/SinglePost-page",
+    element: <NavbarLayout><SinglePost /></NavbarLayout>,
+    errorElement:<h1 className="flex">Opps</h1>,
+  
   },
 ]);
 
