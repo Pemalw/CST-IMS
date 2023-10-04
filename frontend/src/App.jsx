@@ -11,7 +11,6 @@ import NavbarLayout from "./components/NavbarLayout"
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/Single"
-import Write from "./pages/AdminPost"
 import AdminBlog from "./components/AdminBlog"
 import LoginForm from "./components/LoginForm"
 
