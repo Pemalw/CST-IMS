@@ -15,7 +15,7 @@ function Navbar() {
                     <li><Link to="/appointment">Appointment</Link></li>
                     <li><Link to="/medical-report">Medical Report</Link></li>
                     <li><Link to="/about">About Us</Link></li>
-                    <li> <Link to="/login">Login</Link></li>
+                    <li> <Link to="/login">Admin</Link></li>
                   </ul>
                 </div>
             </div>
