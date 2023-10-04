@@ -29,7 +29,7 @@ const SlotChecker = () =>{
                         <label className="text-slate-600 ">Time</label>
                         <input type="time" className="input input-bordered w-50 max-w-xs"/>
                     </div>
-                    <div className="flex flex-row items-center mx-4  mt-4">
+                    <div className="flex flex-row items-center mx-4  mt-4 space-x-4">
                         <button className="flex items-center flex-row  h-10 w-30 justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             <div className="">
                                 <MagnifyingGlassIcon/>
