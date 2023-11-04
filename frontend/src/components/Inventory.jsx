@@ -64,7 +64,7 @@ const Inventory = () => {
   };
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 h-auto">
       <h2 className="text-2xl font-semibold mb-4 text-center mb-16">Inventories</h2>
       <div className="flex justify-center">
         <table className="table w-4/5">
@@ -159,7 +159,7 @@ const Inventory = () => {
 
       <div className="mt-16 flex justify-center">
         <h3 className="text-lg font-semibold mr-4 pt-2">Add New Inventory Item:</h3>
-        <div className="flex space-x-2">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
           <input
             type="text"
             name="name"
