@@ -26,11 +26,12 @@ const HomePage = () => {
           </div>
           <div className="lg:w-1/2">
             <h1 className="text-5xl lg:text-6xl font-bold">CST Infirmary Management System</h1>
-            <p className="py-6 mt-4 lg:mt-7">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti
-              eaque aut repudiandae et a id nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat culpa dolore
-              eligendi earum voluptate beatae, aspernatur, inventore, natus magni quos iusto facilis placeat porro perferendis
-              veritatis architecto consectetur doloremque sed!
+            <p className="py-7 mt-4 lg:mt-7">
+            CST Infirmary Management System encompasses the development of a comprehensive digital platform designed 
+            to efficiently manage healthcare services and patient information within a college. It provide a user-friendly 
+              interface and a range of features to enhance healthcare delivery, patient engagement, and medical supply
+              management. 
+
             </p>
             {/* <button className="btn btn-primary">Get Started</button> */}
           </div>
