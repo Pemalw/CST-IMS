@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from '../components/Post'
-// import "./HealthAwareness.css";
 
 
 export default function Single() {

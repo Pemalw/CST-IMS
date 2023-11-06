@@ -26,11 +26,11 @@ export default function Post() {
     <div className="post w-96 mx-4 flex flex-col mt-8">
       <Link to="/SinglePost-page">
         <div className="flex flex-wrap justify-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
-          <div className="postTitle text-3xl font-semibold mt-4 cursor-pointer">
+          <div className="postTitle text-xl md:text-2xl lg:text-3xl font-semibold mt-4 cursor-pointer">
             {post.title}
           </div>
-          <span className="postDate font-lora italic text-sm text-gray-600 mt-4">{post.date}</span>
-          <p className="postDesc font-varela text-base leading-6 text-gray-700 mt-4 overflow-hidden overflow-ellipsis line-clamp-4">
+          <span className="postDate italic text-sm text-gray-600 mt-4">{post.date}</span>
+          <p className="postDesc text-base leading-6 text-gray-700 mt-4 overflow-hidden overflow-ellipsis line-clamp-4">
             {post.content}
           </p>
         </div>
