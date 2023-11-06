@@ -15,7 +15,7 @@ function HotAppointmentTable() {
     });
     }
     fetchdata();
-    }, []
+    }, [appointments]
 );
 
 
@@ -23,8 +23,54 @@ function HotAppointmentTable() {
     console.log(rowIndex);
     const index=appointments.findIndex(item => item.someProperty == rowIndex);
     console.log(appointments[rowIndex]);
+    const idCode=appointments[rowIndex]._id;
+    console.log(idCode);
     //const index=appointments.findIndex(rowIndex);
     //const _id=a
+    if(appointments[rowIndex].state=="no"){
+      const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
+        state: "yes",
+        clientName: appointments[rowIndex].clientName,
+        appointTime: appointments[rowIndex].appointTime,
+        appointDate: appointments[rowIndex].appointDate,
+        dateOfBirth: appointments[rowIndex].dateOfBirth,
+        gender: appointments[rowIndex].gender,
+        colId: appointments[rowIndex].colId,
+        contactNo: appointments[rowIndex].contactNo,
+        email: appointments[rowIndex].email,
+        applicationNo: appointments[rowIndex].applicationNo,
+      }).then(()=>{
+        const ap=appointments;
+        ap[rowIndex].state="yes";
+        setAppointments(ap);
+      }).catch((error)=>{
+        console.log("error");
+      })
+
+    }else{
+      const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
+        state: "no",
+        clientName: appointments[rowIndex].clientName,
+        appointTime: appointments[rowIndex].appointTime,
+        appointDate: appointments[rowIndex].appointDate,
+        dateOfBirth: appointments[rowIndex].dateOfBirth,
+        gender: appointments[rowIndex].gender,
+        colId: appointments[rowIndex].colId,
+        contactNo: appointments[rowIndex].contactNo,
+        email: appointments[rowIndex].email,
+        applicationNo: appointments[rowIndex].applicationNo,
+      }).then(()=>{
+        const ap=appointments;
+        ap[rowIndex].state="yes";
+        setAppointments(ap);
+      }).catch((error)=>{
+        console.log("error");
+      })
+
+    }
+
+    
+    
     
 
   };

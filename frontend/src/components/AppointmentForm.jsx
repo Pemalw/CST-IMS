@@ -134,6 +134,26 @@ const AppointmentForm = () => {
             
             const response = await axios.post('http://127.0.0.1:5001/appointment/add/', formData, {
                 headers: requestHeaders,
+            }).then(async()=>{
+                const hours = parseInt(appointTime.split(":")[0], 10);
+                let id;
+                let newslot;
+                slots.find(slot => {if(slot.appointmentHour === hours){
+                    id=slot._id;
+                    newslot=slot.slots;
+                }} );
+                const res = await axios.put(`http://localhost:5001/slot/update/${id}`, {
+                    appointmentHour: hours,
+                    slots: newslot-1 ,
+                   
+                }).then(()=>{
+                    console.log("succesfully updated the slots");
+                }).catch((error)=>{
+                    console.log("error");
+                })
+
+            }).catch(()=>{
+
             });
 
             
@@ -185,6 +205,7 @@ const AppointmentForm = () => {
                     <div className="flex justify-center">
                         <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32" type="submit" onClick={handleSubmit}>Register</button>
                     </div>
+                    
                 </div>
             </form>
             </div>
