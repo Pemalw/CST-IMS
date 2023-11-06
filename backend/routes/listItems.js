@@ -1,23 +1,20 @@
 const router = require('express').Router();
 const { request, response } = require('express');
-const multer = require('multer');
 //import list model
 const itemModel = require('../models/listItems');
 
-// storage
-const storage = multer.diskStorage({
-    destination : (req, file, callback) => {
-        callback(null, "../frontend/public/uploads/")
-    },
-    filename: (req, file, callback) =>{
-        callback(null, file.originalname);
+
+router.get('/', async (req, res)=>{
+    try{
+        const allItems = await itemModel.find({});
+        res.status(200).json(allItems)
+    }catch(err){
+        res.json(err);
     }
 })
 
-const upload = multer({storage: storage});
-
 //first route -- we will add Todo Item to our database
-router.post('/api/item', upload.single("image"), async (req, res) =>{
+router.post('/add', async (req, res) =>{
     try{
 
         if (
@@ -51,17 +48,10 @@ router.post('/api/item', upload.single("image"), async (req, res) =>{
 })
 
 //lets create second route -- get data from database
-router.get('/api/items', async (req, res)=>{
-    try{
-        const allItems = await itemModel.find({});
-        res.status(200).json(allItems)
-    }catch(err){
-        res.json(err);
-    }
-})
+
 
 //let's update item
-router.put('/api/item/:id', upload.single("image"), async (req, res) =>{
+router.put('/adds/:id', async (req, res) =>{
     try{
         
      //find the item by its id and update it
@@ -74,7 +64,7 @@ router.put('/api/item/:id', upload.single("image"), async (req, res) =>{
 })
 
 //lets delete item from the database
-router.delete('/api/item/:id', async(req, res)=>{
+router.delete('/delete/:id', async(req, res)=>{
     try{
         //find the item by its id and delete it 
         const deleteItem = await itemModel.findByIdAndDelete(req.params.id);

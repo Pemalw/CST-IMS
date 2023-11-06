@@ -89,6 +89,21 @@ const Inventory = () => {
     setUpdatePostQuantity('');
     setUpdatePostDate('');
   };
+  useEffect(()=>{
+    const fetchInventoryItems = async() =>{
+  
+      try{
+        const res = await axios.get('http://127.0.0.1:5000/inventory')
+        setinventoryItems(res.data);
+        console.log('render')
+  
+      }catch(err){
+        console.log(err)
+      }
+    };
+  
+    fetchInventoryItems()
+  }, []);
 
   //add new inventory item to database
   const addItem = async (e) => {
@@ -101,7 +116,7 @@ const Inventory = () => {
         expiryDate: postDate,
       };
   
-      const response = await axios.post('http://localhost:5501/api/inventory', newItem, {
+      const response = await axios.post('http://127.0.0.1:5000/inventory/add', newItem, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -121,26 +136,12 @@ const Inventory = () => {
   };
   
   //Create function to fetch all items from database --- we will use useEffect hook 
-useEffect(()=>{
-  const fetchInventoryItems = async() =>{
 
-    try{
-      const res = await axios.get('http://localhost:5501/api/inventories')
-      setinventoryItems(res.data);
-      console.log('render')
-
-    }catch(err){
-      console.log(err)
-    }
-  };
-
-  fetchInventoryItems()
-}, []);
   
 // Delete item when click on delete
 const deleteItem = async (id) =>{
   try{
-    const res = await axios.delete(`http://localhost:5501/api/inventory/${id}`)
+    const res = await axios.delete(`http://127.0.0.1:5000/inventory/delete/${id}`)
     const newListItems = inventoryItems.filter(item=> item._id !== id);
     setinventoryItems(newListItems);
   }catch(err){
@@ -162,7 +163,7 @@ const deleteItem = async (id) =>{
 
  
     const res = await axios.put(
-      `http://localhost:5501/api/inventory/${isUpdating}`,
+      `http://127.0.0.1:5000/inventory/adds/${isUpdating}`,
       updatedItem,
       {
         headers: {

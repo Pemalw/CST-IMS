@@ -21,6 +21,7 @@ function HotAppointmentTable() {
 
   const handleStateChange = async(rowIndex) => {
     const index=appointments.findIndex(rowIndex);
+    const _id=a
     
 
   };

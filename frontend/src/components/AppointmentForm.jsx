@@ -72,7 +72,7 @@ const AppointmentForm = () => {
                     const appointmentHour = object.appointmentHour;
                     const slot = object.slots;
 
-                    if(appointmentHour===time){
+                    if(appointmentHour===hours){
                         if(slot>0){
                             val= 1;
                         }
@@ -104,53 +104,54 @@ const AppointmentForm = () => {
         console.log(checkVal);
         if(checkVal==1){
             const today = new Date();
-        const todayString = today.toISOString().split('T')[0];
-        const randomNumber = Math.floor(Math.random() * 10000);
-        const applicationNo = `CST${todayString}-${randomNumber}`;
-        const state="No";
+            const todayString = today.toISOString().split('T')[0];
+            const randomNumber = Math.floor(Math.random() * 10000);
+            const applicationNo = `CST${todayString}-${randomNumber}`;
+            const state="No";
 
     
-        if (!clientName || !appointTime || !appointDate || !dateOfBirth || !gender || !colId || !contactNo || !email || !state || !applicationNo) {
-            return res.status(400).json('Invalid request body.');
-          }
+            if (!clientName || !appointTime || !appointDate || !dateOfBirth || !gender || !colId || !contactNo || !email || !state || !applicationNo) {
+                return res.status(400).json('Invalid request body.');
+            }
 
-        const formData=new FormData();
+            const formData=new FormData();
 
-        formData.append('clientName', clientName);
-        formData.append('appointTime', appointTime);
-        formData.append('appointDate', appointDate);
-        formData.append('dateOfBirth', dateOfBirth);
-        formData.append('gender', gender);
-        formData.append('colId', parseInt(colId));
-        formData.append('contactNo', parseInt(contactNo));
-        formData.append('email', email);
-        formData.append("state", "No");
-        formData.append("applicationNo", applicationNo);
-        console.log(formData);
+            formData.append('clientName', clientName);
+            formData.append('appointTime', appointTime);
+            formData.append('appointDate', appointDate);
+            formData.append('dateOfBirth', dateOfBirth);
+            formData.append('gender', gender);
+            formData.append('colId', parseInt(colId));
+            formData.append('contactNo', parseInt(contactNo));
+            formData.append('email', email);
+            formData.append("state", "No");
+            formData.append("applicationNo", applicationNo);
+            console.log(formData.values);
 
-        const requestHeaders = {
-            'Content-Type': 'application/json',
-          };
-          
-          const response = await axios.post('http://127.0.0.1:5000/appointment/add/', formData, {
-            headers: requestHeaders,
-          });
+            const requestHeaders = {
+                'Content-Type': 'application/json',
+            };
+            
+            const response = await axios.post('http://127.0.0.1:5000/appointment/add/', formData, {
+                headers: requestHeaders,
+            });
 
-        
+            
         }else{
-            //add code for changing font or anuthing here to let them know that it is not working
+                //add code for changing font or anuthing here to let them know that it is not working
             console.log("CANNOT");
         }
-        
-        
-    }catch(error){
-            console.log("errror:");
-            console.log(error);
+            
+            
+        }catch(error){
+                console.log("errror:");
+                console.log(error);
 
-    }
+        }
 
 
   };
+
 
   return (
 
@@ -159,7 +160,6 @@ const AppointmentForm = () => {
 
             <div className="text-center mt-16 text-2xl font-bold text-[#003046]">Appointment Form</div>
             <form className="flex justify-center">
-<<<<<<< HEAD
                 <div className="flex flex-col space-y-10 mt-16">
                     <div className="flex flex-row space-x-8">
                         <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-96 max-w-xs" onChange={(e) => setClientName(e.target.value)} />
@@ -175,42 +175,22 @@ const AppointmentForm = () => {
                     </div>
                     <div className="flex flex-row space-x-8">
                         <select name='gender' className="select select-bordered w-full max-w-xs" onChange={(e) => setGender(e.target.value)}>
-=======
-                <div className="flex flex-col space-y-10 my-8 md:mt-16">
-                    <div className="flex flex-wrap justify-center md:flex-row md:space-x-8 md:space-y-0 space-y-5">
-                        <input type="text" placeholder="First Name" className="input input-bordered w-5/6 md:w-96 max-w-xs" />
-                        <input type="text" placeholder="Last Name" className="input input-bordered w-5/6 md:w-96 max-w-xs" />
-                    </div>
-                    <div className="flex flex-wrap justify-center md:flex-row md:space-x-8 md:space-y-0 space-y-5">
-                        <input type="email" placeholder="Email" className="input input-bordered w-5/6 md:w-full max-w-xs" />
-                        <input type="number" placeholder="Mobile Number" className="input input-bordered w-5/6 md:w-full max-w-xs" />
-                    </div>
-                    <div className="flex flex-wrap justify-center md:flex-row md:space-x-8 md:space-y-0 space-y-5">
-                        <input type="text" placeholder="Student ID" className="input input-bordered w-5/6 md:w-full max-w-xs" />
-                        <input type="date" placeholder="Date of Birth" className="input input-bordered w-5/6 md:w-full max-w-xs" />
-                    </div>
-                    <div className="flex flex-wrap justify-center md:flex-row md:space-x-8 md:space-y-0 space-y-5">
-                        <select className="select select-bordered w-5/6 md:w-full max-w-xs">
->>>>>>> 7215bdeb7e4c8d59baf723bc484ccf45452e4b6c
                           <option disabled selected>Gender</option>
                           <option>Male</option>
                           <option>Female</option>
                         </select>
-<<<<<<< HEAD
                         <input type="date" name='appointDate'  placeholder="appointmentdate" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointDate(e.target.value)} />
                         <input type="time" name='appointTime' placeholder="appointmenttime" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointTime(e.target.value)}/>
-=======
-                        <input type="time" className="input input-bordered w-5/6 md:w-full max-w-xs" />
->>>>>>> 7215bdeb7e4c8d59baf723bc484ccf45452e4b6c
                     </div>
                     <div className="flex justify-center">
                         <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32" type="submit" onClick={handleSubmit}>Register</button>
                     </div>
                 </div>
             </form>
+            </div>
         </div>
-    </div>
-  )
+ 
+  );
 }
 
-export default AppointmentForm
+export default AppointmentForm;

@@ -5,9 +5,17 @@ const { request, response } = require('express');
 const itemModel = require('../models/inventorylist');
 
 
-
+//lets create second route -- get data from database
+router.get('/', async (req, res)=>{
+    try{
+        const allItems = await itemModel.find({});
+        res.status(200).json(allItems)
+    }catch(err){
+        res.json(err);
+    }
+})
 //first route -- we will add Todo Item to our database
-router.post('/api/inventory', async (req, res) =>{
+router.post('/add', async (req, res) =>{
     try{
 
         const { inventory_name, quantity, expiryDate } = req.body;
@@ -34,18 +42,10 @@ router.post('/api/inventory', async (req, res) =>{
     });
     
 
-//lets create second route -- get data from database
-router.get('/api/inventories', async (req, res)=>{
-    try{
-        const allItems = await itemModel.find({});
-        res.status(200).json(allItems)
-    }catch(err){
-        res.json(err);
-    }
-})
+
 
 //let's update item
-router.put('/api/inventory/:id', async (req, res) =>{
+router.put('/adds/:id', async (req, res) =>{
     try{
         
      //find the item by its id and update it
@@ -58,7 +58,7 @@ router.put('/api/inventory/:id', async (req, res) =>{
 })
 
 //lets delete item from the database
-router.delete('/api/inventory/:id', async(req, res)=>{
+router.delete('/delete/:id', async(req, res)=>{
     try{
         //find the item by its id and delete it 
         const deleteItem = await itemModel.findByIdAndDelete(req.params.id);
