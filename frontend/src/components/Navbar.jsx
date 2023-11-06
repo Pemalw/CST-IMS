@@ -13,7 +13,7 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-10"> 
+    <div className="sticky top-0 z-10 bg-white"> 
       <div className="lg:flex lg:justify-between lg:items-center font-bold pt-3 border border-b">
         <div className="flex items-center justify-between">
           <a className="btn btn-ghost normal-case text-xl">CST Infirmary</a>
