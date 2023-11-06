@@ -19,9 +19,12 @@ function HotAppointmentTable() {
 );
 
 
-  const handleStateChange = async(rowIndex) => {
-    const index=appointments.findIndex(rowIndex);
-    const _id=a
+  async function handleStateChange(rowIndex){
+    console.log(rowIndex);
+    const index=appointments.findIndex(item => item.someProperty == rowIndex);
+    console.log(appointments[rowIndex]);
+    //const index=appointments.findIndex(rowIndex);
+    //const _id=a
     
 
   };
@@ -45,11 +48,11 @@ function HotAppointmentTable() {
                 <td className="font-light border-b p-4">{row.appointTime}</td>
                 <td className="font-light border-b p-4">
                   {row.state === 'yes' ? (
-                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)} >
+                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)} >
                       Came
                     </button>
                   ) : (
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)}>
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)}>
                       Did Not Come
                     </button>
                   )}
