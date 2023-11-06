@@ -201,7 +201,7 @@ const AdminBlog = () => {
             ListItems.map((item) => (
             <div className="item mt-4" key={item._id}>
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-              <p className="text-gray-500">{item.date}</p>
+              <p className="text-gray-500"> {new Date(item.date).toLocaleDateString()}</p>
               <p className="text-gray-500">{item.content}</p>
               {item.image && (
                 <img
@@ -227,11 +227,10 @@ const AdminBlog = () => {
            
              </div>
 
-              ))
-              
+              ))            
             }
         </div>
-.       </div>
+      </div>
 
      </div>
   );
