@@ -15,13 +15,62 @@ function HotAppointmentTable() {
     });
     }
     fetchdata();
-    }, []
+    }, [appointments]
 );
 
 
-  const handleStateChange = async(rowIndex) => {
-    const index=appointments.findIndex(rowIndex);
-    const _id=a
+  async function handleStateChange(rowIndex){
+    console.log(rowIndex);
+    const index=appointments.findIndex(item => item.someProperty == rowIndex);
+    console.log(appointments[rowIndex]);
+    const idCode=appointments[rowIndex]._id;
+    console.log(idCode);
+    //const index=appointments.findIndex(rowIndex);
+    //const _id=a
+    if(appointments[rowIndex].state=="no"){
+      const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
+        state: "yes",
+        clientName: appointments[rowIndex].clientName,
+        appointTime: appointments[rowIndex].appointTime,
+        appointDate: appointments[rowIndex].appointDate,
+        dateOfBirth: appointments[rowIndex].dateOfBirth,
+        gender: appointments[rowIndex].gender,
+        colId: appointments[rowIndex].colId,
+        contactNo: appointments[rowIndex].contactNo,
+        email: appointments[rowIndex].email,
+        applicationNo: appointments[rowIndex].applicationNo,
+      }).then(()=>{
+        const ap=appointments;
+        ap[rowIndex].state="yes";
+        setAppointments(ap);
+      }).catch((error)=>{
+        console.log("error");
+      })
+
+    }else{
+      const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
+        state: "no",
+        clientName: appointments[rowIndex].clientName,
+        appointTime: appointments[rowIndex].appointTime,
+        appointDate: appointments[rowIndex].appointDate,
+        dateOfBirth: appointments[rowIndex].dateOfBirth,
+        gender: appointments[rowIndex].gender,
+        colId: appointments[rowIndex].colId,
+        contactNo: appointments[rowIndex].contactNo,
+        email: appointments[rowIndex].email,
+        applicationNo: appointments[rowIndex].applicationNo,
+      }).then(()=>{
+        const ap=appointments;
+        ap[rowIndex].state="yes";
+        setAppointments(ap);
+      }).catch((error)=>{
+        console.log("error");
+      })
+
+    }
+
+    
+    
     
 
   };
@@ -45,11 +94,11 @@ function HotAppointmentTable() {
                 <td className="font-light border-b p-4">{row.appointTime}</td>
                 <td className="font-light border-b p-4">
                   {row.state === 'yes' ? (
-                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)} >
+                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)} >
                       Came
                     </button>
                   ) : (
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)}>
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)}>
                       Did Not Come
                     </button>
                   )}
