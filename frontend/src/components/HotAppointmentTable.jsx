@@ -27,7 +27,7 @@ function HotAppointmentTable() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-auto">
       <h2 className="text-2xl font-semibold mb-4 text-center mb-16">Appointment Status</h2>
       <div className="flex justify-center">
         <table className="table-auto table-zebra bg-white rounded-lg w-4/5">
