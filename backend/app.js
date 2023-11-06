@@ -18,6 +18,8 @@ app.use(cors());
 
 //lets import routes
 const ItemRoute = require('./routes/listItems');
+const InventoryRoute = require('./routes/inventory');
+
 
 //lets connect to mongodb
 mongoose.connect(process.env.DB_CONNECT)
@@ -25,6 +27,9 @@ mongoose.connect(process.env.DB_CONNECT)
 .catch(err => console.log(err))
 
 app.use('/', ItemRoute);
+app.use('/', InventoryRoute);
+
+
 
 
 //Add Port and connect to server
