@@ -39,39 +39,39 @@ cron.schedule('0 19 * * *', async() => {
     const defaultData = [
     {
         appointmentHour: 9,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 10,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 11,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 12,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 13,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 14,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 15,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 16,
-        slot: 0,
+        slot: 6,
     },
     {
         appointmentHour: 17,
-        slot: 0,
+        slot: 6,
     },
     ]
 

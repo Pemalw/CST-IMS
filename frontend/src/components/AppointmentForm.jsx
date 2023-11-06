@@ -91,8 +91,6 @@ const AppointmentForm = () => {
         
     }
 
-
-
   const handleSubmit = async(e)=>{
     e.preventDefault();
 
@@ -134,6 +132,26 @@ const AppointmentForm = () => {
             
             const response = await axios.post('http://127.0.0.1:5001/appointment/add/', formData, {
                 headers: requestHeaders,
+            }).then(async()=>{
+                const hours = parseInt(appointTime.split(":")[0], 10);
+                let id;
+                let newslot;
+                slots.find(slot => {if(slot.appointmentHour === hours){
+                    id=slot._id;
+                    newslot=slot.slots;
+                }} );
+                const res = await axios.put(`http://localhost:5001/slot/update/${id}`, {
+                    appointmentHour: hours,
+                    slots: newslot-1 ,
+                   
+                }).then(()=>{
+                    console.log("succesfully updated the slots");
+                }).catch((error)=>{
+                    console.log("error");
+                })
+
+            }).catch(()=>{
+
             });
 
             
@@ -156,35 +174,56 @@ const AppointmentForm = () => {
   return (
 
     <div className="flex justify-center bg-[#bcdbe6] h-auto w-full">
-        <div className="bg-white m-5 lg:m-20 h-auto w-full lg:h-4/5 md:w-4/5 lg:w-5/6 rounded-xl">
-
+        <div className="bg-white m-5 lg:m-20 h-auto w-full lg:h-4/5 md:w-4/5 lg:w-4/6 rounded-xl">
             <div className="text-center mt-16 text-2xl font-bold text-[#003046]">Appointment Form</div>
             <form className="flex justify-center">
-                <div className="flex flex-col space-y-10 mt-16">
-                    <div className="flex flex-row space-x-8">
-                        <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-96 max-w-xs" onChange={(e) => setClientName(e.target.value)} />
-                        
+                <div className="flex flex-col space-y-4 mt-10">
+                    <div className="space-y-8">
+                        <div className="flex flex-row space-x-8">
+                            <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs" onChange={(e) => setColId(e.target.value)}/>
+                            <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-full max-w-xs" onChange={(e) => setClientName(e.target.value)} />
+                        </div>
+                        <div className="flex flex-row space-x-8">
+                            <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs" onChange={(e) => setEmail(e.target.value)}/>
+                            <input type="tel"  name='contactNo' placeholder="Contact Number" className="input input-bordered w-full max-w-xs" onChange={(e) => setContactNo(e.target.value)}/>
+                        </div>
                     </div>
                     <div className="flex flex-row space-x-8">
-                        <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs" onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="number"  name='contactNo' placeholder="Mobile Number" className="input input-bordered w-full max-w-xs" onChange={(e) => setContactNo(e.target.value)}/>
+                        <div className="w-full">
+                            <label className="label">
+                              <span className="label-text">Gender</span>
+                            </label>
+                            <select name='gender' className="select select-bordered w-full max-w-xs" onChange={(e) => setGender(e.target.value)}>
+                              <option disabled selected>Select gender</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label className="label">
+                              <span className="label-text">Date of Birth</span>
+                            </label>
+                            <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" onChange={(e) => setDateOfBirth(e.target.value)}/>
+                        </div>
                     </div>
                     <div className="flex flex-row space-x-8">
-                        <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs" onChange={(e) => setColId(e.target.value)}/>
-                        <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" onChange={(e) => setDateOfBirth(e.target.value)}/>
-                    </div>
-                    <div className="flex flex-row space-x-8">
-                        <select name='gender' className="select select-bordered w-full max-w-xs" onChange={(e) => setGender(e.target.value)}>
-                          <option disabled selected>Gender</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                        <input type="date" name='appointDate'  placeholder="appointmentdate" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointDate(e.target.value)} />
-                        <input type="time" name='appointTime' placeholder="appointmenttime" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointTime(e.target.value)}/>
+                        <div className="w-full">
+                            <label className="label">
+                              <span className="label-text">Appointment Date</span>
+                            </label>
+                            <input type="date" name='appointDate'  placeholder="appointmentdate" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointDate(e.target.value)} />
+                        </div>
+                        <div className="w-full">
+                            <label className="label">
+                              <span className="label-text">Appointment Time</span>
+                            </label>
+                            <input type="time" name='appointTime' placeholder="appointmenttime" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointTime(e.target.value)}/>
+                        </div>
                     </div>
                     <div className="flex justify-center">
-                        <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32" type="submit" onClick={handleSubmit}>Register</button>
+                        <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32 mt-8 mb-12" type="submit" onClick={handleSubmit}>Register</button>
                     </div>
+                    
                 </div>
             </form>
             </div>
