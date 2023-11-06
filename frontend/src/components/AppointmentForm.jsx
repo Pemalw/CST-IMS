@@ -6,7 +6,7 @@ const AppointmentForm = () => {
     <div className="flex justify-center bg-[#bcdbe6] h-auto w-full">
         <div className="bg-white m-5 lg:m-20 h-auto w-full lg:h-4/5 md:w-4/5 lg:w-5/6 rounded-xl">
 
-            <div className="text-center mt-16 text-2xl font-bold">Appointment Form</div>
+            <div className="text-center mt-16 text-2xl font-bold text-[#003046]">Appointment Form</div>
             <form className="flex justify-center">
                 <div className="flex flex-col space-y-10 my-8 md:mt-16">
                     <div className="flex flex-wrap justify-center md:flex-row md:space-x-8 md:space-y-0 space-y-5">

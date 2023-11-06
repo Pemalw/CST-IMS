@@ -25,8 +25,8 @@ const HomePage = () => {
             </div> 
           </div>
           <div className="lg:w-1/2">
-            <h1 className="text-5xl lg:text-6xl font-bold">CST Infirmary Management System</h1>
-            <p className="py-7 mt-4 lg:mt-7">
+            <h1 className="text-5xl lg:text-6xl font-bold text-[#003046]">CST Infirmary Management System</h1>
+            <p className="py-7 mt-4 lg:mt-7 text-[#003046]">
             CST Infirmary Management System encompasses the development of a comprehensive digital platform designed 
             to efficiently manage healthcare services and patient information within a college. It provide a user-friendly 
               interface and a range of features to enhance healthcare delivery, patient engagement, and medical supply

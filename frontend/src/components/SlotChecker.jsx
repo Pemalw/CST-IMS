@@ -18,7 +18,7 @@ const MagnifyingGlassIcon = () => {
 const SlotChecker = () => {
   return (
     <div className="mt-5 p-5 px-10 self-center bg-white justify-center border-2 h-auto w-full md:w-4/5 lg:w-5/6">
-      <h1 className="mt-2 text-center text-md md:text-lg lg:text-2xl font-extrabold">
+      <h1 className="mt-2 text-center text-md md:text-lg lg:text-2xl font-extrabold text-[#003046]">
         Check Appointment Availability
       </h1>
       <div className="flex justify-center bg-gray">

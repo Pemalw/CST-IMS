@@ -13,8 +13,8 @@ function Navbar() {
   };
 
   return (
-    <div> 
-      <div className="lg:flex lg:justify-between lg:items-center bg-base-100 font-bold pt-3 border border-b">
+    <div className="sticky top-0 z-10"> 
+      <div className="lg:flex lg:justify-between lg:items-center font-bold pt-3 border border-b">
         <div className="flex items-center justify-between">
           <a className="btn btn-ghost normal-case text-xl">CST Infirmary</a>
 
@@ -41,13 +41,13 @@ function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex menu menu-horizontal px-1 text-base">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/health-awareness">Health Awareness</Link></li>
-          <li><Link to="/appointment">Appointment</Link></li>
-          <li><Link to="/medical-report">Medical Report</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li> <Link to="/login">Admin</Link></li>
+        <ul className="hidden lg:flex menu menu-horizontal px-1 text-base text-[#003046]">
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/">Home</Link></li>
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/health-awareness">Health Awareness</Link></li>
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/appointment">Appointment</Link></li>
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/medical-report">Medical Report</Link></li>
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/about">About Us</Link></li>
+          <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"> <Link to="/login">Admin</Link></li>
         </ul>
       </div>
 
