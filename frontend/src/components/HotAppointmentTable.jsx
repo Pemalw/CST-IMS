@@ -47,7 +47,7 @@ function HotAppointmentTable() {
         console.log("error");
       })
 
-    }else{
+    }else if(appointments[rowIndex].state=="yes"){
       const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
         state: "no",
         clientName: appointments[rowIndex].clientName,

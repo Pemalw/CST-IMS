@@ -1,30 +1,79 @@
-import React from 'react';
+import {React,useState, useEffect} from 'react';
 import AddPatientRecord from './AddPatientsRecord';
+import axios from 'axios';
 
-function Table({ headers, data, captions }) {
+function Table() {
+  const [appointments, setAppointments]=useState([]);
+  const [filteredList, setFilterList]=useState([]);
+  const [selectedId, setSelectedId] = useState();
+
+  useEffect( () => {
+    async function fetchdata(){
+        await axios.get('http://127.0.0.1:5001/appointment')
+    .then((response) => {
+        setAppointments(response.data);
+        const filterList = appointments.filter(appointment => appointment.state === 'yes');
+        setFilterList(filterList);
+
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    }
+    fetchdata();
+    }, [appointments]
+);
+function calculateAge(dateOfBirth) {
+  const birthDate = new Date(dateOfBirth);
+  const currentDate = new Date();
+
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+const openModal = (id) => {
+  const modal = document.getElementById('my_modal');
+  modal.showModal();
+};
 
   return (
     <div className="flex justify-center my-16">
         <table className="table-auto w-5/6">
-            <caption className='text-left text-xl font-bold drop-shadow-4 mb-10'>{captions}</caption>
+            <caption className='text-left text-xl font-bold drop-shadow-4 mb-10'>Patient List</caption>
             <thead className='thead-light border-b-2'>
                 <tr>
-                {headers.map((header, index) => (
-                    <th key={index} className="p-3 text-left">{header}</th>
-                ))}
+                  <th>StdID</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>ContactNo</th>
+                  <th>Email</th>
+                  <th>Time</th>
                 <th>
                   
                 </th>
                 </tr>
             </thead>
             <tbody className='tbody-light'>
-                {data.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                    {headers.map((header, colIndex) => (
-                    <td className="font-light text-left border-b p-4 " key={colIndex}>{row[header]}</td>
-                    ))}
+            
+                {filteredList.map(app => (
+                <tr key={app._id}>
+                    <td className="font-light text-left border-b p-4 " >{app.colId}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.clientName}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.gender}</td>
+                    <td className="font-light text-left border-b p-4 " >{calculateAge(app.dateOfBirth)}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.contactNo}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.email}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.appointTime}</td>
+                    
                     <td>
-                        <button className="btn btn-sm normal-case bg-[#003046] text-base-100 btn-accent border-0" onClick={()=>document.getElementById('my_modal').showModal()}>
+                        <button className="btn btn-sm normal-case bg-[#003046] text-base-100 btn-accent border-0" onClick={()=>{openModal(app._id)
+                        setSelectedId(app._id)}}>
                             Generate Report
                         </button>
                         <dialog id="my_modal" className="modal">
@@ -33,7 +82,7 @@ function Table({ headers, data, captions }) {
                               {/* if there is a button in form, it will close the modal */}
                               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
-                            <AddPatientRecord />
+                            <AddPatientRecord data={selectedId}/>
                             <div className="modal-action">
                             </div>
                           </div>
