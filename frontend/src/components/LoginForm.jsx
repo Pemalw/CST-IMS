@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {BiSolidUserCircle} from'react-icons/bi';
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -22,8 +23,12 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="my-4 flex justify-center self-center  ">
-        <form onSubmit={handleSubmit} className="p-5 self-center justify-center md:w-1/3 w-auto border-2 rounded-md shadow-md bg-[#003046]">
+    <div className="my-4 flex justify-center self-center">
+        <form onSubmit={handleSubmit} className="m-10 p-5 self-center md:w-1/3 w-auto border-2 rounded-lg shadow-md opacity-90 bg-[#61AAC5]">
+          <div className="flex flex-col justify-center">
+            <div className="flex justify-center pt-5">
+              <BiSolidUserCircle className="w-12 h-12"/>
+            </div>
             <div className="my-4 flex flex-col mx-8">
               <label htmlFor="username" className="block text-sm font-medium text-white text-bold">Username</label>
               <input
@@ -47,8 +52,9 @@ const LoginForm = () => {
               />
             </div>
             <div className="flex justify-center">
-              <button type="submit" className="btn btn-accent bg-[#61AAC5] text-white font-bold ms-4 mb-4 hover:bg-blue-400">Login</button>
+              <button type="submit" className="btn font-bold ms-4 my-4 hover:text-white hover:bg-[#003046]">Login</button>
             </div>
+          </div>
         </form>
     </div>
   
