@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
 
-function HotAppointmentTable({ data }) {
-  const [appointmentData, setAppointmentData] = useState(data);
+function HotAppointmentTable() {
+  const [appointments, setAppointments]=useState([]);
 
-  const handleStateChange = (rowIndex, newState) => {
-    const updatedData = [...appointmentData];
-    updatedData[rowIndex].State = newState;
-    setAppointmentData(updatedData);
+  useEffect( () => {
+    async function fetchdata(){
+        await axios.get('http://127.0.0.1:5000/appointment')
+    .then((response) => {
+        setAppointments(response.data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    }
+    fetchdata();
+    }, []
+);
+
+
+  const handleStateChange = async(rowIndex) => {
+    const index=appointments.findIndex(rowIndex);
+    
+
   };
 
   return (
@@ -22,17 +38,17 @@ function HotAppointmentTable({ data }) {
             </tr>
           </thead>
           <tbody className="tbody-light">
-            {appointmentData.map((row, rowIndex) => (
+            {appointments.map((row, rowIndex) => (
               <tr key={rowIndex}>
-                <td className="font-light border-b p-4">{row.Name}</td>
-                <td className="font-light border-b p-4">{row.Time}</td>
+                <td className="font-light border-b p-4">{row.clientName}</td>
+                <td className="font-light border-b p-4">{row.appointTime}</td>
                 <td className="font-light border-b p-4">
-                  {row.State === 'came' ? (
-                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleStateChange(rowIndex, 'did not come')}>
+                  {row.state === 'yes' ? (
+                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)} >
                       Came
                     </button>
                   ) : (
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleStateChange(rowIndex, 'came')}>
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleStateChange(rowIndex)}>
                       Did Not Come
                     </button>
                   )}

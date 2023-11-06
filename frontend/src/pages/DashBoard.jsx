@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '../components/Table';
 import AddPatientRecord from '../components/AddPatientsRecord';
 import HotAppointmentTable from '../components/HotAppointmentTable';
@@ -6,11 +6,15 @@ import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
 import Inventory from '../components/Inventory.jsx';
 import AdminBlog from '../components/AdminBlog';
+import axios from 'axios';
 
 const DashBoard = () => {
 
   const [currentComponent, setCurrentComponent] = useState("Appointment");
+  const [appointments, setAppoitnments] = useState([]);
+  const [reports, setReports]= useState([]);
 
+  
   const handleSideBarLinkClick = (componentName) => {
     setCurrentComponent(componentName);
   };
@@ -46,7 +50,7 @@ const DashBoard = () => {
         )}
 
         {currentComponent === 'Appointment' && (
-          <HotAppointmentTable data={data1} />
+          <HotAppointmentTable />
         )}
 
         {currentComponent === 'Inventories' && (
@@ -57,6 +61,10 @@ const DashBoard = () => {
           <AdminBlog />
         )}
       </div>
+      <button onClick={()=>{
+        console.log(appointments);
+        console.log(reports);
+      }}>Try</button>
 
        <Footer />
     </div>
