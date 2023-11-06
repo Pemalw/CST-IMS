@@ -30,7 +30,7 @@ const adminNavbar = ({ onClick }) => {
             </div>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost normal-case text-xl font-bold">CST Infirmary</a>
+            <a className="btn btn-ghost normal-case text-xl font-bold" href='/'>CST Infirmary</a>
           </div>
           <div className="navbar-end space-x-5 mr-3">
             <button className="btn btn-ghost btn-circle">

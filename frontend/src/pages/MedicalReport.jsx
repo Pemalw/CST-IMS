@@ -68,8 +68,8 @@ export const MedicalReport = () => {
     <div class="h-screen">
 
       <div class="container mx-auto">
-        <div class="bg-[#61AAC5] w-70 h-20 mt-4  flex items-center justify-center shadow-lg rounded-lg">
-          <div><h1 className="text-3xl font-bold text-center text-black ">View Medical Report</h1> </div>
+        <div class="bg-[#003046] w-70 h-20 mt-4 flex items-center justify-center shadow-lg rounded-lg">
+          <div><h1 className="text-3xl font-bold text-center text-white ">View Medical Report</h1> </div>
         </div>
     
         <div className="hero-content text-center mt-6">

@@ -1,70 +1,213 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
+// const Inventory = () => {
+//   // Sample inventory data
+//   const initialInventory = [
+//     { id: 1, name: 'Bandages', quantity: 100, expiryDate: '2023-12-31' },
+//     { id: 2, name: 'Painkillers', quantity: 50, expiryDate: '2023-10-15' },
+//     { id: 3, name: 'First Aid Kits', quantity: 20, expiryDate: '2024-05-20' },
+//     { id: 4, name: 'Adhesive Tape', quantity: 25, expiryDate: '2023-11-30' },
+//     { id: 5, name: 'Disposable Gloves', quantity: 30, expiryDate: '2023-12-10' },
+//   ];
+
+//   const [inventory, setInventory] = useState(initialInventory);
+//   const [editingItem, setEditingItem] = useState(null);
+
+//   const [newInventoryItem, setNewInventoryItem] = useState({
+//     inventory_name: '',
+//     quantity: 0,
+//     expiryDate: '',
+//   });
+
+//   const handleInputChange = (e) => {
+//     const { inventory_name, value } = e.target;
+//     setNewInventoryItem({
+//       ...newInventoryItem,
+//       [inventory_name]: inventory_name === 'quantity' ? parseInt(value, 10) : value,
+//     });
+//   };
+
+//   const handleAddItem = () => {
+//     // Generate a unique ID for the new item (You can use a library like 'uuid' for this)
+//     const newItemId = Date.now();
+
+//     // Create a new inventory item with the generated ID
+//     const newItem = { ...newInventoryItem, id: newItemId };
+
+//     // Add the new item to the inventory
+//     setInventory([...inventory, newItem]);
+
+//     // Reset the input fields
+//     setNewInventoryItem({
+//       inventory_name: '',
+//       quantity: 0,
+//       expiryDate: '',
+//     });
+//   };
+
+//   const handleEditClick = (item) => {
+//     setEditingItem(item);
+//   };
+
+//   const handleSaveEdit = (item) => {
+//     const updatedInventory = inventory.map((invItem) =>
+//       invItem.id === item.id ? item : invItem
+//     );
+//     setInventory(updatedInventory);
+//     setEditingItem(null);
+//   };
+
+//   const handleDeleteClick = (item) => {
+//     const updatedInventory = inventory.filter((invItem) => invItem.id !== item.id);
+//     setInventory(updatedInventory);
+//   };
+
+
+
 const Inventory = () => {
-  // Sample inventory data
-  const initialInventory = [
-    { id: 1, name: 'Bandages', quantity: 100, expiryDate: '2023-12-31' },
-    { id: 2, name: 'Painkillers', quantity: 50, expiryDate: '2023-10-15' },
-    { id: 3, name: 'First Aid Kits', quantity: 20, expiryDate: '2024-05-20' },
-    { id: 4, name: 'Adhesive Tape', quantity: 25, expiryDate: '2023-11-30' },
-    { id: 5, name: 'Disposable Gloves', quantity: 30, expiryDate: '2023-12-10' },
-  ];
+  const [postName, setPostName] = useState('');
+  const [postDate, setPostDate] = useState('');
+  const [postQuantity, setPostQuantity] = useState('');   
+  const [inventoryItems, setinventoryItems] = useState([]);  
+  const [isUpdating, setIsUpdating] = useState('');
+  const [updatePostName, setUpdatePostName] = useState('');
+  const [updatePostDate, setUpdatePostDate] = useState('');
+  const [updatePostQuantity, setUpdatePostQuantity] = useState('');
 
-  const [inventory, setInventory] = useState(initialInventory);
-  const [editingItem, setEditingItem] = useState(null);
-
-  const [newInventoryItem, setNewInventoryItem] = useState({
-    name: '',
-    quantity: 0,
-    expiryDate: '',
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewInventoryItem({
-      ...newInventoryItem,
-      [name]: name === 'quantity' ? parseInt(value, 10) : value,
-    });
+  const selectItemForUpdate = (item) => {
+    setIsUpdating(item._id);
+    setUpdatePostName(item.inventory_name);
+    setUpdatePostQuantity(item.quantity);
+    setUpdatePostDate(item.expiryDate);
   };
 
-  const handleAddItem = () => {
-    // Generate a unique ID for the new item (You can use a library like 'uuid' for this)
-    const newItemId = Date.now();
-
-    // Create a new inventory item with the generated ID
-    const newItem = { ...newInventoryItem, id: newItemId };
-
-    // Add the new item to the inventory
-    setInventory([...inventory, newItem]);
-
-    // Reset the input fields
-    setNewInventoryItem({
-      name: '',
-      quantity: 0,
-      expiryDate: '',
-    });
+  const resetUpdateForm = () => {
+    setIsUpdating('');
+    setUpdatePostName('');
+    setUpdatePostQuantity('');
+    setUpdatePostDate('');
   };
 
-  const handleEditClick = (item) => {
-    setEditingItem(item);
+  //add new inventory item to database
+  const addItem = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const newItem = {
+        inventory_name: postName,
+        quantity: postQuantity,
+        expiryDate: postDate,
+      };
+  
+      const response = await axios.post('http://localhost:5501/api/inventory', newItem, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      // Handle successful response, update state, show success message, etc.
+      console.log('Item added successfully:', response.data);
+      
+      // Reset form fields
+      setPostName('');
+      setPostQuantity('');
+      setPostDate('');
+    } catch (error) {
+      // Handle errors, show error message to the user, log to console, etc.
+      console.error('Error adding item:', error);
+    }
+  };
+  
+  //Create function to fetch all items from database --- we will use useEffect hook 
+useEffect(()=>{
+  const fetchInventoryItems = async() =>{
+
+    try{
+      const res = await axios.get('http://localhost:5501/api/inventories')
+      setinventoryItems(res.data);
+      console.log('render')
+
+    }catch(err){
+      console.log(err)
+    }
   };
 
-  const handleSaveEdit = (item) => {
-    const updatedInventory = inventory.map((invItem) =>
-      invItem.id === item.id ? item : invItem
+  fetchInventoryItems()
+}, []);
+  
+// Delete item when click on delete
+const deleteItem = async (id) =>{
+  try{
+    const res = await axios.delete(`http://localhost:5501/api/inventory/${id}`)
+    const newListItems = inventoryItems.filter(item=> item._id !== id);
+    setinventoryItems(newListItems);
+  }catch(err){
+    console.log(err);
+  }
+ }
+
+
+ //update item
+ const updateItem = async (e) => {
+  e.preventDefault()
+
+  try {
+    const updatedItem = {
+      inventory_name: updatePostName,
+      quantity: updatePostQuantity,
+      expiryDate: updatePostDate,
+    };
+
+ 
+    const res = await axios.put(
+      `http://localhost:5501/api/inventory/${isUpdating}`,
+      updatedItem,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
     );
-    setInventory(updatedInventory);
-    setEditingItem(null);
-  };
+    
 
-  const handleDeleteClick = (item) => {
-    const updatedInventory = inventory.filter((invItem) => invItem.id !== item.id);
-    setInventory(updatedInventory);
-  };
+    
+    setinventoryItems(
+      inventoryItems.map((item) =>
+        item._id === isUpdating ? res.data : item
+      )
+    );
+
+    setUpdatePostName('');
+    setUpdatePostQuantity('');
+    setUpdatePostDate('');
+    setIsUpdating('');
+  } catch (err) {
+    console.log(err);
+  }
+ };
+
+
+//before updating item we need to show input field where we will create our updated item
+const renderUpdateForm = () => {
+  const selectedItem = inventoryItems.find((item) => item._id === isUpdating);
+
+  return(
+  <form className="flex justify-between w-full" onSubmit={(e)=>{updateItem(e)}} >
+
+    <input className="w-80 border border-gray-300 rounded-md p-2 outline-none" type="text" placeholder="New Name" onChange={e=>{setUpdatePostName(e.target.value)}} value={updatePostName || selectedItem.inventory_name} />
+    <input className="input" type="number" placeholder="New Quantity" onChange={e=>{setUpdatePostQuantity(e.target.value)}} value={updatePostQuantity || selectedItem.quantity} />
+    <input className="input" type="date" placeholder="Expirary Date" onChange={e=>{setUpdatePostDate(e.target.value)}} value={updatePostDate || selectedItem.expiryDate} />
+    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">Update</button>
+  </form>
+
+);
+  }
+
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 h-auto">
       <h2 className="text-2xl font-semibold mb-4 text-center mb-16">Inventories</h2>
       <div className="flex justify-center">
         <table className="table w-4/5">
@@ -73,127 +216,122 @@ const Inventory = () => {
               <th>Name</th>
               <th>Quantity</th>
               <th>Expiry Date</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
-            {inventory.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  {editingItem === item ? (
-                    <input
-                      type="text"
-                      className="input input-sm"
-                      name="name"
-                      value={item.name}
-                      onChange={(e) =>
-                        setEditingItem({ ...item, name: e.target.value })
-                      }
-                    />
-                  ) : (
-                    item.name
-                  )}
-                </td>
-                <td>
-                  {editingItem === item ? (
-                    <input
-                      type="number"
-                      className="input input-sm"
-                      name="quantity"
-                      value={item.quantity}
-                      onChange={(e) =>
-                        setEditingItem({ ...item, quantity: e.target.value })
-                      }
-                    />
-                  ) : (
-                    item.quantity
-                  )}
-                </td>
-                <td>
-                  {editingItem === item ? (
-                    <input
-                      type="date"
-                      className="input input-sm"
-                      name="expiryDate"
-                      value={item.expiryDate}
-                      onChange={(e) =>
-                        setEditingItem({ ...item, expiryDate: e.target.value })
-                      }
-                    />
-                  ) : (
-                    item.expiryDate
-                  )}
-                </td>
-                <div className="flex justify-end">
-                <td>
-                  {editingItem === item ? (
-                    <button
-                      className="btn btn-sm btn-success"
-                      onClick={() => handleSaveEdit(item)}
-                    >
-                      Save
-                    </button>
-                  ) : (
-                    <>
-                      <button
-                        className="btn btn-sm btn-primary"
-                        onClick={() => handleEditClick(item)}
-                      >
-                        <BiEdit />
-                      </button>
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDeleteClick(item)}
-                      >
-                        <BiTrash />
-                      </button>
-                    </>
-                  )}
-                </td>
-                </div>
-              </tr>
-            ))}
-          </tbody>
+          {inventoryItems.map((item) => (
+          <tr key={item._id}>
+            <td>
+              {isUpdating === item._id ? (
+                <input
+                  type="text"
+                  value={updatePostName}
+                  onChange={(e) => setUpdatePostName(e.target.value)}
+                />
+              ) : (
+                item.inventory_name
+              )}
+            </td>
+            <td>
+              {isUpdating === item._id ? (
+                <input
+                  type="number"
+                  value={updatePostQuantity}
+                  onChange={(e) => setUpdatePostQuantity(e.target.value)}
+                />
+              ) : (
+                item.quantity
+              )}
+            </td>
+            <td>
+              {isUpdating === item._id ? (
+                <input
+                  type="date"
+                  value={updatePostDate}
+                  onChange={(e) => setUpdatePostDate(e.target.value)}
+                />
+              ) : (
+                item.expiryDate
+              )}
+            </td>
+            <td className="flex justify-end">
+              {isUpdating === item._id ? (
+                <>
+                  <button
+                    className="btn btn-sm btn-primary"
+                    onClick={(e) => updateItem(e)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="btn btn-sm btn-secondary ml-2"
+                    onClick={resetUpdateForm}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-sm btn-primary"
+                    onClick={() => selectItemForUpdate(item)}
+                  >
+                    <BiEdit />
+                  </button>
+                  <button
+                    className="btn btn-sm btn-danger ml-2"
+                    onClick={() => deleteItem(item._id)}
+                  >
+                    <BiTrash />
+                  </button>
+                </>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+
         </table>
+
       </div>
 
       <div className="mt-16 flex justify-center">
         <h3 className="text-lg font-semibold mr-4 pt-2">Add New Inventory Item:</h3>
-        <div className="flex space-x-2">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+          <form className='form' onSubmit={e => addItem(e)} encType='multipart/form-data'>
           <input
             type="text"
-            name="name"
+            name="inventory_name"
             placeholder="Name"
             className="input"
-            value={newInventoryItem.name}
-            onChange={handleInputChange}
+            value={postName}
+            onChange={(e) => setPostName(e.target.value)}
           />
           <input
             type="number"
             name="quantity"
             placeholder="Quantity"
             className="input"
-            value={newInventoryItem.quantity}
-            onChange={handleInputChange}
+            value={postQuantity}
+            onChange={(e)=> setPostQuantity(e.target.value)}
           />
           <input
             type="date"
             name="expiryDate"
             placeholder="Expiry Date"
             className="input"
-            value={newInventoryItem.expiryDate}
-            onChange={handleInputChange}
+            value={postDate}
+            onChange={(e) => setPostDate(e.target.value)}
           />
-          <button
-            className="btn btn-primary"
-            onClick={handleAddItem}
-            disabled={!newInventoryItem.name || newInventoryItem.quantity <= 0 || !newInventoryItem.expiryDate}
-          >
-            Add
-          </button>
+          <button type = 'submit' className="btn btn-primary"> Add </button>
+          </form>
         </div>
       </div>
-    </div>
+      
+      </div>
+    
   );
 };
 
