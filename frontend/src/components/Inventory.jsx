@@ -261,13 +261,13 @@ const renderUpdateForm = () => {
               {isUpdating === item._id ? (
                 <>
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm bg-[#003046] border-0 btn-accent text-base-100"
                     onClick={(e) => updateItem(e)}
                   >
                     Update
                   </button>
                   <button
-                    className="btn btn-sm btn-secondary ml-2"
+                    className="btn btn-sm btn-error ml-2"
                     onClick={resetUpdateForm}
                   >
                     Cancel
@@ -276,13 +276,13 @@ const renderUpdateForm = () => {
               ) : (
                 <>
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm bg-[#003046] text-base-100 btn-accent border-0"
                     onClick={() => selectItemForUpdate(item)}
                   >
                     <BiEdit />
                   </button>
                   <button
-                    className="btn btn-sm btn-danger ml-2"
+                    className="btn btn-sm btn-error ml-2"
                     onClick={() => deleteItem(item._id)}
                   >
                     <BiTrash />
@@ -300,8 +300,8 @@ const renderUpdateForm = () => {
 
       <div className="mt-16 flex justify-center">
         <h3 className="text-lg font-semibold mr-4 pt-2">Add New Inventory Item:</h3>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
-          <form className='form' onSubmit={e => addItem(e)} encType='multipart/form-data'>
+        <div className="flex flex-col md:flex-row ">
+          <form className="form space-y-2 md:space-y-0 md:space-x-2" onSubmit={e => addItem(e)} encType='multipart/form-data'>
           <input
             type="text"
             name="inventory_name"
@@ -326,7 +326,7 @@ const renderUpdateForm = () => {
             value={postDate}
             onChange={(e) => setPostDate(e.target.value)}
           />
-          <button type = 'submit' className="btn btn-primary"> Add </button>
+          <button type = "submit" className="btn btn-accent bg-[#003046] text-base-100 border-0"> Add </button>
           </form>
         </div>
       </div>
