@@ -93,7 +93,7 @@ const Inventory = () => {
     const fetchInventoryItems = async() =>{
   
       try{
-        const res = await axios.get('http://127.0.0.1:5000/inventory')
+        const res = await axios.get('http://127.0.0.1:5001/inventory')
         setinventoryItems(res.data);
         console.log('render')
   
@@ -116,7 +116,7 @@ const Inventory = () => {
         expiryDate: postDate,
       };
   
-      const response = await axios.post('http://127.0.0.1:5000/inventory/add', newItem, {
+      const response = await axios.post('http://127.0.0.1:5001/inventory/add', newItem, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -141,7 +141,7 @@ const Inventory = () => {
 // Delete item when click on delete
 const deleteItem = async (id) =>{
   try{
-    const res = await axios.delete(`http://127.0.0.1:5000/inventory/delete/${id}`)
+    const res = await axios.delete(`http://127.0.0.1:5001/inventory/delete/${id}`)
     const newListItems = inventoryItems.filter(item=> item._id !== id);
     setinventoryItems(newListItems);
   }catch(err){
@@ -163,7 +163,7 @@ const deleteItem = async (id) =>{
 
  
     const res = await axios.put(
-      `http://127.0.0.1:5000/inventory/adds/${isUpdating}`,
+      `http://127.0.0.1:5001/inventory/adds/${isUpdating}`,
       updatedItem,
       {
         headers: {

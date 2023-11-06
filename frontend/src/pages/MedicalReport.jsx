@@ -18,7 +18,7 @@ export const MedicalReport = () => {
 
   useEffect( () => {
       async function fetchdata(){
-          await axios.get('http://127.0.0.1:5000/report/')
+          await axios.get('http://127.0.0.1:5001/report/')
       .then((response) => {
           setReports(response.data);
       })

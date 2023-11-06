@@ -25,7 +25,7 @@ const AdminBlog = () => {
       formData.append('content', postContent);
       // formData.append('image', postImage);
       console.log(formData.get('image'))
-      const res = await axios.post('http://localhost:5000/item/add', formData, {
+      const res = await axios.post('http://localhost:5001/item/add', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -49,7 +49,7 @@ const AdminBlog = () => {
     const getItemsList = async() =>{
 
       try{
-        const res = await axios.get('http://localhost:5000/item')
+        const res = await axios.get('http://localhost:5001/item')
         setListItems(res.data);
         console.log('render')
 
@@ -64,7 +64,7 @@ const AdminBlog = () => {
   // Delete item when click on delete
    const deleteItem = async (id) =>{
     try{
-      const res = await axios.delete(`http://localhost:5000/item/delete/${id}`)
+      const res = await axios.delete(`http://localhost:5001/item/delete/${id}`)
       const newListItems = ListItems.filter(item=> item._id !== id);
       setListItems(newListItems);
     }catch(err){
@@ -78,7 +78,7 @@ const AdminBlog = () => {
     e.preventDefault();
   
     try {
-      const res = await axios.put(`http://localhost:5000/item/adds/${isUpdating}`, {
+      const res = await axios.put(`http://localhost:5001/item/adds/${isUpdating}`, {
         title: updateTitle,
         date: updateDate,
         content: updateContent,
