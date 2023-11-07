@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     errorElement:<h1 className="flex">Opps</h1>
   },
   {
-    path: "/SinglePost-page",
+    path: "/SinglePost-page/:id",
     element: <NavbarLayout><SinglePost /></NavbarLayout>,
     errorElement:<h1 className="flex">Opps</h1>,
   

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BiSolidUserCircle } from "react-icons/bi";
+import logo from '../assets/images/logo.png';
 
 const adminNavbar = ({ onClick }) => {
   return (
@@ -32,7 +33,9 @@ const adminNavbar = ({ onClick }) => {
             </div>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost normal-case text-xl font-bold" href='/'>CST Infirmary</a>
+            <a className="btn btn-ghost normal-case text-xl font-bold h-auto" href='/'>
+              <img src={logo} className="flex self-center w-auto h-16" />
+            </a>
           </div>
           <div className="navbar-end space-x-5 mr-3">
             <button className="btn btn-ghost btn-circle">

@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import axios from 'axios';
+import logo2 from '../assets/images/logo2.png';
 
 export const MedicalReport = () => {
 
@@ -76,22 +77,45 @@ export const MedicalReport = () => {
           <div className="max-w-md">
             <input type="text" placeholder="Enter Code Number " className="input input-bordered w-full max-w-xs" onChange={(e) => setReportNo(e.target.value)}/>
             <p className="py-6 text-[#dc2626] "> NOTE: The medical code number will be provided through the email. From that email enter the code to generate your medical report and veiw it. facere quidem velit fuga?</p>
-            <button className="btn btn-accent bg-[#003046] text-base-100 border-0" onClick={search}>Submit</button>
-              
+            <button className="btn btn-accent bg-[#003046] text-base-100 border-0" onClick={()=>document.getElementById('my_modal').showModal()}>Submit</button>
+            <dialog id="my_modal" className="modal">
+              <div className="modal-box w-11/12 max-w-5xl bg-slate-50">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <div className="flex justify-center">
+                  <div className="flex flex-col">
+                    <div className="flex self-center mt-5">
+                      <img src={logo2} className="w-96 h-auto" /> 
+                    </div>
+                    <div className="flex flex-row">
+                      <div className="m-4 md:m-14 text-right text-lg md:text-xl font-bold leading-10 rounded-2xl">
+                        <h1>Client Name: </h1>
+                        <h1>Age: </h1>
+                        <h1>Gender: </h1>
+                        <h1>Medicine Prescribed: </h1>
+                        <h1>Diagonisis: </h1>
+                        <h1>Date: </h1>
+                        <h1>ReportNo: </h1>
+                      </div>
+                      <div className="m-4 md:m-14 text-left text-md md:text-lg leading-10 rounded-2xl">
+                        <h1>{clientName}</h1>
+                        <h1>{age}</h1>
+                        <h1>{gender}</h1>
+                        <h1>{medicinePrescribed} </h1>
+                        <h1>{diagnosis}</h1>
+                        <h1>{date.toString()}</h1>
+                        <h1>{reportNo}</h1>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </dialog>
           </div>
         </div> 
-      </div>
-      <div>
-        <h1>Client Name: {clientName}</h1>
-        <h1>Age: {age}</h1>
-        <h1>Gender: {gender}</h1>
-        <h1>Medicine Prescribed:{medicinePrescribed} </h1>
-        <h1>Diagonisis: {diagnosis}</h1>
-        <h1>Date: {date.toString()}</h1>
-        <h1>ReportNo: {reportNo}</h1>
-
-        
-        
       </div>
     </div>
 
