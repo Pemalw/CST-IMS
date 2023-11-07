@@ -124,7 +124,7 @@ const AdminBlog = () => {
      
     return (
 
-    <form className="flex flex-col w-full" onSubmit={(e) => updateItem(e)}>
+    <form className="flex flex-col my-4" onSubmit={(e) => updateItem(e)}>
         <input
           className="mb-2 p-2 border rounded-md"
           type="text"
@@ -157,8 +157,12 @@ const AdminBlog = () => {
           className="file-input file-input-bordered w-full max-w-xs mr-3"
           type="file"
           placeholder="Source URL"
-          onChange={(e) => setUpdateImage(e.target.value)}
-          value={updateImage|| selectedItem.image} // Populate date with current item's date
+          onChange={(e) => {
+            const file = e.target.files[0];
+            // Do not set state with the file object directly
+            // Store the file object for submission instead
+            setUpdateImage(file);
+          }}// Populate date with current item's date
         />
 
 
@@ -257,10 +261,6 @@ const AdminBlog = () => {
               <p className="text-gray-500">{item.content}</p>
               <p className="text-gray-500">{item.source}</p>
               {/* <p className="file-input file-input-bordered w-full max-w-xs mr-3">{item.image}</p> */}
-              
-              {/* <img src={require(`../../../backend/uploads/${item.image}`)} */}
-
-            
               {item.image && (
                     <img
                     className='file-input file-input-bordered w-full h-full max-w-xs mr-3' 
@@ -270,9 +270,6 @@ const AdminBlog = () => {
               }
 
               {/* <img src={require(`../../../backend/uploads/${item.image}`)} */}
-
-            
-         
               <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded " onClick={()=>{setIsUpdating(item._id)}}>Update</button>
               <button className = "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 ml-4" onClick={()=> {deleteItem(item._id)}}>Delete</button>
               {/* </div> */}
