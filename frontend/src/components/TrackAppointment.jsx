@@ -1,5 +1,6 @@
 import {React, useState, useEffect } from 'react'
 import axios from 'axios';
+import {ImSearch} from 'react-icons/im'
 
 const TrackAppointment = () => {
 
@@ -64,31 +65,30 @@ const TrackAppointment = () => {
   }
 
   return (
-    <div className="flex justify-center bg-[#bcdbe6] h-screen w-full">
-        <div className="bg-white m-20 h-auto w-4/6 rounded-xl">
-            <div className="text-center mt-16 text-2xl text-[#003046] font-bold">Track Appointment</div>
-            <div className="flex justify-center mt-16">
-              <div className="form-control">
-               <div className="input-group">
-                 <input type="text" placeholder="Enter Application Number" className="input input-bordered" onChange={(e) => setColId(e.target.value)} />
-                 <button className="btn btn-square" onClick={search}>
-                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                 </button>
-               </div>
-               <div>
-               <ul>
-                <li>Client Name: {clientName}</li>
-                <li>Appointment Date: {appointDate.toString()}</li>
-                <li>Appointment Time: {appointTime}</li>
-                <li>Col ID: {colId}</li>
-                <li>Email: {email}</li>
-                <li>Contact No: {contactNo}</li>
-              </ul>
-               </div>
+    <div className="flex justify-center bg-[#bcdbe6] h-auto w-full">
+      <div className="flex flex-col bg-white pb-32 m-20 h-auto w-4/6 rounded-xl">
+        <div className="text-center mt-16 text-2xl text-[#003046] font-bold">Track Appointment</div>
+        <div className="grid justify-items-center mt-16">
+          <div className="input-group flex justify-center">
+            <input type="text" placeholder="Enter Application Number" className="input input-bordered w-72" onChange={(e) => setColId(e.target.value)} />
+            <button className="btn btn-square" onClick={search}>
+              <div className="flex self-center">
+                <ImSearch className="w-5 h-5"/>
               </div>
-            </div>
-            
+            </button>
+          </div>
+          <div className="mt-14 p-12 text-gray-300 leading-10 rounded-2xl bg-[#003046]">
+            <ul>
+             <li>Client Name: {clientName}</li>
+             <li>Appointment Date: {appointDate.toString()}</li>
+             <li>Appointment Time: {appointTime}</li>
+             <li>Col ID: {colId}</li>
+             <li>Email: {email}</li>
+             <li>Contact No: {contactNo}</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
   )
 }
