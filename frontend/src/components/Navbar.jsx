@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/images/logo.png';
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,10 +14,12 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-10 bg-white"> 
-      <div className="lg:flex lg:justify-between lg:items-center font-bold pt-3 border border-b">
+    <div className="sticky top-0 z-10 bg-white h-16"> 
+      <div className="lg:flex lg:justify-between lg:items-center font-bold h-16 border border-b">
         <div className="flex items-center justify-between">
-          <a className="btn btn-ghost normal-case text-xl">CST Infirmary</a>
+          <a className="btn btn-ghost normal-case text-xl h-auto">
+            <img src={logo} className="flex self-center w-auto h-16" />
+          </a>
 
           {/* Hamburger Menu Icon */}
           <div
@@ -41,7 +44,7 @@ function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex menu menu-horizontal px-1 text-base text-[#003046]">
+        <ul className="hidden lg:flex menu menu-horizontal px-1 pt-3 text-base text-[#003046]">
           <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/">Home</Link></li>
           <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/health-awareness">Health Awareness</Link></li>
           <li className="hover:bg-[#E6F4F1] active:bg-[#E6F4F1] rounded"><Link to="/appointment">Appointment</Link></li>

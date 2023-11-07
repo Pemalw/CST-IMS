@@ -44,7 +44,7 @@ const TrackAppointment = () => {
       const _state= object.state;
       const _applicationNo= object.applicationNo;
 
-      if(_colId==colId){
+      if(_colId===applicationNo){
         setClientName(_clientName);
         setAppointDate(_appointDate);
         setAppointTime(_appointTime);
