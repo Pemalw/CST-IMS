@@ -3,7 +3,7 @@ const { request, response } = require('express');
 //import list model
 const itemModel = require('../models/listItems');
 
-
+//lets create second route -- get data from database
 router.get('/', async (req, res)=>{
     try{
         const allItems = await itemModel.find({});
@@ -12,6 +12,7 @@ router.get('/', async (req, res)=>{
         res.json(err);
     }
 })
+
 
 //first route -- we will add Todo Item to our database
 router.post('/add', async (req, res) =>{
@@ -47,7 +48,6 @@ router.post('/add', async (req, res) =>{
     }
 })
 
-//lets create second route -- get data from database
 
 
 //let's update item
@@ -55,7 +55,7 @@ router.put('/adds/:id', async (req, res) =>{
     try{
         
      //find the item by its id and update it
-     const updateItem =  await itemModel.findByIdAndUpdate(req.params.id, {$set: req.body});
+     const updateItem =  await itemModel.findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true } );
      res.status(200).json('Item Updated');
     }catch(err){
         res.json(err);

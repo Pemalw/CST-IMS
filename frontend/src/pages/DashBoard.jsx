@@ -44,7 +44,7 @@ const DashBoard = () => {
       <div className="my-10">
         {/* Conditionally render components based on selectedOption */}
         {currentComponent === 'PatientRecords' && (
-            <Table headers={headers} data={data} captions={'Patient List'}/>
+            <Table />
         )}
 
         {currentComponent === 'Appointment' && (

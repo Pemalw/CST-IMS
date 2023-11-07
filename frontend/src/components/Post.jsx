@@ -1,40 +1,47 @@
 import { Link } from "react-router-dom";
-// import "./post.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// import Single from "../singlePost/Single"
 
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+ //Create function to fetch all items from database --- we will use useEffect hook 
 
-export default function Post() {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
+export default function Post({img}) {
+  const [ListItems, setListItems] = useState([]);      
 
-  useEffect(() => {
-    axios.get(`http://127.0.0.1:5001/item`).then((response) => {
-      setPost(response.data);
-    });
-  }, [id]);
+  useEffect(()=>{
+    const getItemsList = async() =>{
+  
+      try{
+        const res = await axios.get('http://localhost:5001/item')
+        setListItems(res.data);
+        console.log('render')
+  
+      }catch(err){
+        console.log(err)
+      }
+    }
+    getItemsList();
+  }, []);
 
-  // Check if post is null, if so, display loading message
-  if (post === null) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <div className="post w-96 mx-4 flex flex-col mt-8">
-      <Link to="/SinglePost-page">
-        <div className="flex flex-wrap justify-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
-          <div className="postTitle text-xl md:text-2xl lg:text-3xl font-semibold mt-4 cursor-pointer">
-            {post.title}
-          </div>
-          <span className="postDate italic text-sm text-gray-600 mt-4">{post.date}</span>
-          <p className="postDesc text-base leading-6 text-gray-700 mt-4 overflow-hidden overflow-ellipsis line-clamp-4">
-            {post.content}
-          </p>
+    <div className="flex flex-wrap justify-center mx-1 mb-10">
+      {ListItems.map((item) => (
+        <div key={item._id} className="post w-96 mx-4 flex flex-col mt-3">
+          <Link to={`/SinglePost-page/${item._id}`}>
+            <div className="flex flex-wrap justify-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
+              <img className="postImg w-96 h-72 object-cover" src={img} alt="" />
+              <div className="postTitle text-3xl font-semibold mt-4 cursor-pointer">
+                {item.title}
+              </div>
+              <span className="postDate font-lora italic text-sm text-gray-600 mt-4"> {new Date(item.date).toLocaleDateString()}</span>
+              <p className="postDesc font-varela text-base leading-6 text-gray-700 mt-4 overflow-hidden overflow-ellipsis line-clamp-4">
+                {item.content}
+              </p>
+            </div>
+          </Link>
         </div>
-      </Link>
+      ))}
     </div>
   );
 }
