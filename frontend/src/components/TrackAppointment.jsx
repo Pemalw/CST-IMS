@@ -10,7 +10,7 @@ const TrackAppointment = () => {
   const [appointDate, setAppointDate] = useState(new Date());
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [gender, setGender] = useState("");
-  const [colId, setColId] = useState(0);
+  const [colId, setColId] = useState("");
   const [contactNo, setContactNo] = useState(0);
   const [email, setEmail] = useState("");
 
@@ -38,17 +38,21 @@ const TrackAppointment = () => {
       const _appointDate= object.appointDate;
       const _dateOfBirth= object.dateOfBirth;
       const _gender= object.gender;
-      const _colId= object.colId;
+      //const _colId= object.colId;
       const _contactNo= object.contactNo;
       const _email= object.email;
       const _state= object.state;
       const _applicationNo= object.applicationNo;
+      console.log(object.colId);
+      console.log(colId);
+      
 
-      if(_colId==colId){
+      if(object.colId==colId){
         setClientName(_clientName);
         setAppointDate(_appointDate);
         setAppointTime(_appointTime);
-        setColId(_colId);
+        setApplicationNo(_applicationNo);
+        //setColId(_colId);
         setEmail(_email);
         setContactNo(_contactNo);
         console.log("success");
@@ -65,7 +69,7 @@ const TrackAppointment = () => {
             <div className="flex justify-center mt-16">
               <div className="form-control">
                <div className="input-group">
-                 <input type="text" placeholder="Enter Application Number" className="input input-bordered" onChange={(e) => setApplicationNo(e.target.value)} />
+                 <input type="text" placeholder="Enter Application Number" className="input input-bordered" onChange={(e) => setColId(e.target.value)} />
                  <button className="btn btn-square" onClick={search}>
                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                  </button>
