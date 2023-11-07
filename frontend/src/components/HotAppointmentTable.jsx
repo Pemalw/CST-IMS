@@ -64,7 +64,7 @@ function HotAppointmentTable() {
         applicationNo: appointments[rowIndex].applicationNo,
       }).then(()=>{
         const ap=appointments;
-        ap[rowIndex].state="yes";
+        ap[rowIndex].state="no";
         setAppointments(ap);
       }).catch((error)=>{
         console.log("error");
@@ -96,7 +96,7 @@ function HotAppointmentTable() {
                 <td className="font-light border-b p-4">{row.clientName}</td>
                 <td className="font-light border-b p-4">{row.appointTime}</td>
                 <td className="font-light border-b p-4">
-                  {row.state === 'no' ? (
+                  {row.state === 'yes' ? (
                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)} >
                       Came
                     </button>

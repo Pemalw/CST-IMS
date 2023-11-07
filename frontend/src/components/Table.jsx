@@ -13,6 +13,7 @@ function Table() {
     .then((response) => {
         setAppointments(response.data);
         const filterList = appointments.filter(appointment => appointment.state === 'yes');
+        filterList.reverse();
         setFilterList(filterList);
 
     })
