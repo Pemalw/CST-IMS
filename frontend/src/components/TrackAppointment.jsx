@@ -30,6 +30,7 @@ const TrackAppointment = () => {
 
   const search=(e)=>{
     e.preventDefault();
+
     appointments.forEach((object) => {
       // Get the appointmentHour and slot
       const _clientName= object.clientName;
@@ -43,7 +44,7 @@ const TrackAppointment = () => {
       const _state= object.state;
       const _applicationNo= object.applicationNo;
 
-      if(_applicationNo==applicationNo){
+      if(_colId==colId){
         setClientName(_clientName);
         setAppointDate(_appointDate);
         setAppointTime(_appointTime);
@@ -51,6 +52,7 @@ const TrackAppointment = () => {
         setEmail(_email);
         setContactNo(_contactNo);
         console.log("success");
+        
       } 
     });
 

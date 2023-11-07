@@ -8,7 +8,10 @@ function HotAppointmentTable() {
     async function fetchdata(){
         await axios.get('http://127.0.0.1:5001/appointment')
     .then((response) => {
-        setAppointments(response.data);
+        const apps=response.data;
+        const filteredAppointments = apps.filter(appointment => appointment.state === "yes" || appointment.state === "no");
+        filteredAppointments.reverse();
+        setAppointments(filteredAppointments);
     })
     .catch((error) => {
         console.log(error);
@@ -93,7 +96,7 @@ function HotAppointmentTable() {
                 <td className="font-light border-b p-4">{row.clientName}</td>
                 <td className="font-light border-b p-4">{row.appointTime}</td>
                 <td className="font-light border-b p-4">
-                  {row.state === 'yes' ? (
+                  {row.state === 'no' ? (
                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleStateChange(rowIndex)} >
                       Came
                     </button>

@@ -76,7 +76,7 @@ const SlotChecker = () =>{
                         console.log("came here");
                     }
                   });
-                  console.log("New here");
+                  
 
             }else{
                 console.log("There is something we must do");

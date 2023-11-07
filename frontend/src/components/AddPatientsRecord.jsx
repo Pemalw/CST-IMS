@@ -146,8 +146,9 @@ const AddPatientRecord=(props)=>{
             setRecipient(filteredList.email);
             setSubject("Your Report Number");
             setMessage(reportNum);
-
+            console.log(recipient);
             sendEmail();
+
             update();
         }).catch((error)=>{
             console.log(error);
