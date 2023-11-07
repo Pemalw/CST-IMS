@@ -47,6 +47,7 @@ const TrackAppointment = () => {
       console.log(colId);
       
 
+
       if(object.colId==colId){
         setClientName(_clientName);
         setAppointDate(_appointDate);
