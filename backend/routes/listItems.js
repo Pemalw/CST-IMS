@@ -1,34 +1,10 @@
 const router = require('express').Router();
 const express = require('express');
 const { request, response } = require('express');
-const multer = require('multer');
 const path = require('path'); // Import the 'path' module
 
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb ){
-        cb(null, "./uploads/");
-
-    },
-       
-    filename: function(req, file, cb){
-        const uniqueSuffix = Date.now();
-        cb(null, uniqueSuffix + file.originalname);
-    }
-})
-
-// const storage = multer.diskStorage({
-//     destination: './uploads/',  
-//     filename: function(req, file, cb){
-//         // const uniqueSuffix = Date.now();
-//         cb(null, file.originalname);
-//     }
-// })
-
-const upload = multer({
-    storage: storage
-});
 
 //import list model
 const itemModel = require('../models/listItems');
@@ -61,7 +37,7 @@ router.use('/uploads', express.static(path.join('C:/Users/user/Documents/GitHub/
 
 
 //first route -- we will add Todo Item to our database
-router.post('/add', upload.single('image'), async (req, res) =>{
+router.post('/add', async (req, res) =>{
 
   console.log(req.body); // Log request body
   console.log(req.file); // Log uploaded file details
