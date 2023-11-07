@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from "react";
+import {ImSearch} from 'react-icons/im'
 import axios from "axios";
 
 const MagnifyingGlassIcon = () => {
@@ -90,33 +91,37 @@ const SlotChecker = () =>{
 
 
     return(
-        <div className=" mt-5 self-center bg-white justify-center border-2 h-4/5 w-4/6">
+        <div className="mt-5 p-5 px-10 rounded-xl self-center bg-white justify-center border-2 h-auto w-full md:w-4/5 lg:w-4/6">
             <h1 className="mt-2 text-center  text-2xl font-bold"> Check Appointment Availablity </h1>
             <div className="flex justify-center">
                 <form className="flex justify-center bg-white h-4/5 w-4/6 rounded-xl">
-
-                    <div className="flex flex-col mx-4 my-4 ">
-                        <label className="text-slate-600 ">Date</label>
-                        <input type="date" className="input input-bordered w-50 max-w-xs content-end" onChange={(e) => setDate(e.target.value)}/>
-                    </div>
-                    <div className="flex flex-col mx-4 my-4 ">
-                        <label className="text-slate-600 ">Time</label>
-                        <input type="time" className="input input-bordered w-50 max-w-xs" onChange={(e) => setTime(e.target.value)}/>
-                    </div>
-                    <div className="flex flex-row items-center mx-4  mt-4 space-x-4">
-                        <button className="flex items-center flex-row  h-10 w-30 justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={checkAvailability}>
-                            <div className="">
-                                <MagnifyingGlassIcon/>
+                    <div className="flex flex-col md:flex-row">
+                        <div className="md:flex md:flex-row">
+                            <div className="flex flex-col mx-4 my-4 ">
+                                <label className="text-slate-600 ">Date</label>
+                                <input type="date" className="input input-bordered w-full lg:w-50 max-w-xs content-end" onChange={(e) => setDate(e.target.value)}/>
                             </div>
-                            <div>Check</div>
-                        </button>
-                        <button className="h-10 w-30 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">reset</button>
+                            <div className="flex flex-col mx-4 my-4 ">
+                                <label className="text-slate-600 ">Time</label>
+                                <input type="time" className="input input-bordered w-full lg:w-50 max-w-xs" onChange={(e) => setTime(e.target.value)}/>
+                            </div>
+                        </div>
+                        <div className="flex flex-row items-center mx-4  mt-4 space-x-4">
+                            <button className="flex items-center flex-row h-10 w-full lg:w-30 justify-center btn-accent bg-[#003046] text-base-100 border-0 font-bold py-2 px-4 rounded"  onClick={checkAvailability}>
+                                <div className="w-4 h-4 mr-2">
+                                    <ImSearch />
+                                </div>
+                                <div>Check</div>
+                            </button>
+                            <button className="btn-error h-10 w-30 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Reset
+                            </button>
+                        </div>
+                        <div className="flex flex-col mx-4 border rounded-2xl justify-center items-center my-4">
+                            <label className="font-bold w-20 text-center">{avail}</label>
+                            <label className="border-2 w-10 border text-center text-green-500"></label>
+                        </div>
                     </div>
-                    <div className="flex flex-col mx-4 justify-center items-center my-4">
-                        <label className="font-bold w-40 text-center">{avail}</label>
-                        <label className="border-2 w-10 text-center text-green-500"></label>
-                    </div>
-
                 </form>
             </div>
         </div>
