@@ -31,9 +31,7 @@ const HomePage = () => {
             to efficiently manage healthcare services and patient information within a college. It provide a user-friendly 
               interface and a range of features to enhance healthcare delivery, patient engagement, and medical supply
               management. 
-
             </p>
-            {/* <button className="btn btn-primary">Get Started</button> */}
           </div>
         </div>
       </div>

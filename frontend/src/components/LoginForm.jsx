@@ -24,13 +24,13 @@ const LoginForm = () => {
 
   return (
     <div className="my-4 flex justify-center self-center">
-        <form onSubmit={handleSubmit} className="m-10 p-5 self-center md:w-1/3 w-auto border-2 rounded-lg shadow-md opacity-90 bg-[#61AAC5]">
+        <form onSubmit={handleSubmit} className="m-10 p-5 self-center md:w-1/3 w-auto border-2 rounded-lg shadow-md opacity-90 bg-[#003046]">
           <div className="flex flex-col justify-center">
             <div className="flex justify-center pt-5">
-              <BiSolidUserCircle className="w-12 h-12"/>
+              <BiSolidUserCircle className="w-12 h-12 text-white"/>
             </div>
             <div className="my-4 flex flex-col mx-8">
-              <label htmlFor="username" className="block text-sm font-medium text-white text-bold">Username</label>
+              <label htmlFor="username" className="block text-md font-medium text-white text-bold">Username</label>
               <input
                   type="text"
                   name="username"
@@ -41,7 +41,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="mb-4 flex flex-col mx-8">
-              <label htmlFor="password" className="block text-sm font-medium text-white text-bold">Password</label>
+              <label htmlFor="password" className="block text-md font-medium text-white text-bold">Password</label>
               <input
                   type="password"
                   name="password"

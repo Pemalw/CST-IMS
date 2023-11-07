@@ -29,7 +29,7 @@ export default function Post({img}) {
       {ListItems.map((item) => (
         <div key={item._id} className="post w-96 mx-4 flex flex-col mt-3">
           <Link to={`/SinglePost-page/${item._id}`}>
-            <div className="flex flex-wrap justify-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
+            <div className="flex flex-col items-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
               <img className="postImg w-96 h-72 object-cover" src={`http://localhost:5001/uploads/${item.image}`} alt="" />
 
               <div className="postTitle text-3xl font-semibold mt-4 cursor-pointer">

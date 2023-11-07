@@ -109,7 +109,9 @@ export const MedicalReport = () => {
                         <h1>{reportNo}</h1>
                       </div>
                     </div>
-
+                    <div>
+                    <button className="btn bg-[#003046] text-base-200 btn-accent border-0 w-32 mt-8 mb-12" type="submit">Download</button>
+                    </div>
                   </div>
                 </div>
               </div>
