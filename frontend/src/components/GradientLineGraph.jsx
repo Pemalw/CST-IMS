@@ -1,4 +1,6 @@
 import { Line } from "react-chartjs-2";
+import {React, useState, useEffect} from 'react';
+import axios from 'axios';
 import {
   Chart as ChartJS,
   LineElement,
@@ -17,11 +19,48 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, 
 
 const GradientLineGraph = () => {
 
+  const [report, setReport]=useState([]);
+  const [lab, setLab]=useState([]);
+  const [counts, setCounts]=useState([]);
+  const [studentCount, setStudentCounts]=useState(0);
+
+  useEffect( () => {
+    async function fetchdata(){
+        await axios.get('http://127.0.0.1:5001/report')
+    .then((response) => {
+        setReport(response.data);
+        setStudentCounts(report.length);
+        const diagnosisCounts={};
+        report.forEach(reports => {
+          const diagnosis = reports.diagnosis;
+          // If the diagnosis is already a key in the object, increment the count
+          if (diagnosisCounts.hasOwnProperty(diagnosis)) {
+            diagnosisCounts[diagnosis]++;
+          } else {
+            // If the diagnosis is not a key, initialize the count to 1
+            diagnosisCounts[diagnosis] = 1;
+          }
+        });
+        const labels=Object.keys(diagnosisCounts);
+        const numbers=Object.values(diagnosisCounts);
+        setLab(labels);
+        setCounts(numbers);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    }
+    fetchdata();
+    }, [report]
+  );
+
+
+
   const data = {
-    labels: ['ARI', 'Flu', 'Diarrhea', 'Covid', 'Malaria','Tonsillitis'],
+    labels: lab,
     datasets: [{
         label: '',
-        data: [107,69,78,99,47,50,62],
+        data: counts,
         backgroundColor: 'aqua',
         borderColor: 'black',
         pointBorderColor: '#61BDD5',
