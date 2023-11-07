@@ -13,6 +13,7 @@ const port= process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
+const sendEmail = require('./routes/emailSender'); 
 const Appointment = require('./routes/appointment');
 const Report = require('./routes/report');
 const Slot = require('./routes/slot');
@@ -41,45 +42,61 @@ cron.schedule('0 19 * * *', async() => {
     const defaultData = [
     {
         appointmentHour: 9,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 10,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 11,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 12,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 13,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 14,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 15,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 16,
-        slot: 6,
+        slots: 6,
     },
     {
         appointmentHour: 17,
-        slot: 6,
+        slots: 6,
     },
     ]
 
     await Slot.insertMany(defaultData);
   });
 
+  app.post('/send-email', async (req, res) => {
+    const { recipient, subject, message } = req.body; // Extract recipient, subject, and message from the request body
+  
+    if (!recipient || !subject || !message) {
+      return res.status(400).send('Invalid request. Please provide recipient, subject, and message.');
+    }
+  
+    try {
+      const response = await sendEmail(recipient, subject, message);
+      console.log('Email sent:', response);
+      res.send('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Error sending email');
+    }
+  });
 
 app.listen(port, ()=> {
     console.log(`Server is running on port: ${port}`)

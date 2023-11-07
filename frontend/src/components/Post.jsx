@@ -31,6 +31,7 @@ export default function Post({img}) {
           <Link to={`/SinglePost-page/${item._id}`}>
             <div className="flex flex-wrap justify-center p-6 rounded-xl shadow-lg hover:shadow-[#61AAC5] hover:bg-[#61AAC5] hover:text-white">
               <img className="postImg w-96 h-72 object-cover" src={`http://localhost:5001/uploads/${item.image}`} alt="" />
+
               <div className="postTitle text-3xl font-semibold mt-4 cursor-pointer">
                 {item.title}
               </div>

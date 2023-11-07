@@ -105,7 +105,7 @@ const AppointmentForm = () => {
             const todayString = today.toISOString().split('T')[0];
             const randomNumber = Math.floor(Math.random() * 10000);
             const applicationNo = `CST${todayString}-${randomNumber}`;
-            const state="No";
+            const state="no";
 
     
             if (!clientName || !appointTime || !appointDate || !dateOfBirth || !gender || !colId || !contactNo || !email || !state || !applicationNo) {
@@ -122,7 +122,7 @@ const AppointmentForm = () => {
             formData.append('colId', parseInt(colId));
             formData.append('contactNo', parseInt(contactNo));
             formData.append('email', email);
-            formData.append("state", "No");
+            formData.append("state", "no");
             formData.append("applicationNo", applicationNo);
             console.log(formData.values);
 
@@ -130,7 +130,7 @@ const AppointmentForm = () => {
                 'Content-Type': 'application/json',
             };
             
-            const response = await axios.post('http://127.0.0.1:5001/appointment/add/', formData, {
+            const response = await axios.post('http://localhost:5001/appointment/add/', formData, {
                 headers: requestHeaders,
             }).then(async()=>{
                 const hours = parseInt(appointTime.split(":")[0], 10);
@@ -140,6 +140,7 @@ const AppointmentForm = () => {
                     id=slot._id;
                     newslot=slot.slots;
                 }} );
+
                 const res = await axios.put(`http://localhost:5001/slot/update/${id}`, {
                     appointmentHour: hours,
                     slots: newslot-1 ,

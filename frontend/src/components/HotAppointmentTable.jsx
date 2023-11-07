@@ -8,7 +8,10 @@ function HotAppointmentTable() {
     async function fetchdata(){
         await axios.get('http://127.0.0.1:5001/appointment')
     .then((response) => {
-        setAppointments(response.data);
+        const apps=response.data;
+        const filteredAppointments = apps.filter(appointment => appointment.state === "yes" || appointment.state === "no");
+        filteredAppointments.reverse();
+        setAppointments(filteredAppointments);
     })
     .catch((error) => {
         console.log(error);
@@ -47,7 +50,7 @@ function HotAppointmentTable() {
         console.log("error");
       })
 
-    }else{
+    }else if(appointments[rowIndex].state=="yes"){
       const res = await axios.put(`http://localhost:5001/appointment/adds/${idCode}`, {
         state: "no",
         clientName: appointments[rowIndex].clientName,
@@ -61,7 +64,7 @@ function HotAppointmentTable() {
         applicationNo: appointments[rowIndex].applicationNo,
       }).then(()=>{
         const ap=appointments;
-        ap[rowIndex].state="yes";
+        ap[rowIndex].state="no";
         setAppointments(ap);
       }).catch((error)=>{
         console.log("error");

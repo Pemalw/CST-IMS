@@ -23,7 +23,9 @@ const adminNavbar = ({ onClick }) => {
                       <li><a onClick={() => onClick("Appointment")}>Appointment</a></li>
                       <li><a onClick={() => onClick("Inventories")}>Inventories</a></li>
                       <li><a onClick={() => onClick("PatientRecords")}>Patient Records</a></li>
-                      <li><a onClick={() => onClick("AdminBlog")}>Admin BLog</a></li>
+                      <li><a onClick={() => onClick("AdminBlog")}>Admin Blog</a></li>
+                      <li><a onClick={() => onClick("DataAnalysis")}>Data Analysis</a></li>
+
                     </ul>
                   </div>
                 </div>

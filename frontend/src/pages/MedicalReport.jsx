@@ -76,7 +76,8 @@ export const MedicalReport = () => {
           <div className="max-w-md">
             <input type="text" placeholder="Enter Code Number " className="input input-bordered w-full max-w-xs" onChange={(e) => setReportNo(e.target.value)}/>
             <p className="py-6 text-[#dc2626] "> NOTE: The medical code number will be provided through the email. From that email enter the code to generate your medical report and veiw it. facere quidem velit fuga?</p>
-            <button className="btn btn-accent bg-[#61AAC5] text-white font-bold" onClick={search}>Submit</button>
+            <button className="btn btn-accent bg-[#003046] text-base-100 border-0" onClick={search}>Submit</button>
+              
           </div>
         </div> 
       </div>

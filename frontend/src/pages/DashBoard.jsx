@@ -6,6 +6,7 @@ import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
 import Inventory from '../components/Inventory.jsx';
 import AdminBlog from '../components/AdminBlog';
+import DataAnalysis from '../components/DataAnalysis';
 import axios from 'axios';
 
 const DashBoard = () => {
@@ -43,9 +44,7 @@ const DashBoard = () => {
       <div className="my-10">
         {/* Conditionally render components based on selectedOption */}
         {currentComponent === 'PatientRecords' && (
-          <>
-            <Table headers={headers} data={data} captions={'Patient List'}/>
-          </>
+            <Table />
         )}
 
         {currentComponent === 'Appointment' && (
@@ -59,11 +58,15 @@ const DashBoard = () => {
         {currentComponent === 'AdminBlog' && (
           <AdminBlog />
         )}
+
+        {currentComponent === 'DataAnalysis' && (
+          <DataAnalysis />
+        )}
       </div>
       <button onClick={()=>{
         console.log(appointments);
         console.log(reports);
-      }}>Try</button>
+      }}></button>
 
        <Footer />
     </div>
