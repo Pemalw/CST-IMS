@@ -10,6 +10,8 @@ const AddPatientRecord=(props)=>{
     const [recipient, setRecipient] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
+    const [emailSate, setEailState]=useState('');
+    const [reportState, setReportState]=useState('');
 
     useEffect( () => {
         async function fetchdata(){
@@ -65,6 +67,8 @@ const AddPatientRecord=(props)=>{
           });
     
           if (response.ok) {
+            setEailState("Succesfully sent the email");
+
             console.log('Email sent successfully');
           } else {
             console.error(response.status);
@@ -144,6 +148,7 @@ const AddPatientRecord=(props)=>{
         const response = await axios.post('http://127.0.0.1:5001/report/add/', formData, {
                 headers: requestHeaders,
         }).then(()=>{
+            setReportState("Successfully added");
             console.log("Succesfully added in report");
             setRecipient(filteredList.email);
             setSubject("Your Report Number");
@@ -176,8 +181,10 @@ const AddPatientRecord=(props)=>{
                     <div className="flex justify-center">
                         <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32 mt-8 mb-12" type="submit" onClick={add}>Generate Report</button>
                     </div>
+                    
                 </div>
             </form>
+            
     </div>
     
   );
