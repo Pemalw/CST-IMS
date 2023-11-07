@@ -56,30 +56,6 @@ const AddPatientRecord=(props)=>{
         return age;
       }
 
-      const sendEmail = async () => {
-        try {
-          const response = await fetch('http://localhost:5001/send-email', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ recipient, subject, message }),
-          });
-    
-          if (response.ok) {
-            setEailState("Succesfully sent the email");
-
-            console.log('Email sent successfully');
-          } else {
-            console.error(response.status);
-            console.error('Error sending email');
-            
-          }
-        } catch (error) {
-          console.error('Error sending email:', error);
-        }
-      };
-
 
       const update=async()=>{
         const ids=filteredList._id;
@@ -147,15 +123,43 @@ const AddPatientRecord=(props)=>{
         };
         const response = await axios.post('http://127.0.0.1:5001/report/add/', formData, {
                 headers: requestHeaders,
-        }).then(()=>{
+        }).then(async()=>{
             setReportState("Successfully added");
             console.log("Succesfully added in report");
             setRecipient(filteredList.email);
             setSubject("Your Report Number");
             setMessage(reportNum);
             console.log(recipient);
-            sendEmail();
+            try {
+        
 
+              const response = await fetch('http://localhost:5001/send-email', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                "recipient": filteredList.email,
+                "subject": "Your Report Number",
+                "message": reportNum, }),
+              });
+        
+              if (response.ok) {
+                setEailState("Succesfully sent the email");
+    
+                console.log('Email sent successfully');
+              } else {
+                console.log(recipient);
+                console.log(subject);
+                console.log(message);
+    
+                console.error(response.status);
+                console.error('Error sending email');
+                
+              }
+            } catch (error) {
+              console.error('Error sending email:', error);
+            }
             update();
         }).catch((error)=>{
             console.log(error);

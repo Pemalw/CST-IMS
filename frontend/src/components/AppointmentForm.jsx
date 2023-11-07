@@ -110,7 +110,7 @@ const AppointmentForm = () => {
 
     
             if (!clientName || !appointTime || !appointDate || !dateOfBirth || !gender || !colId || !contactNo || !email || !state || !applicationNo) {
-                return res.status(400).json('Invalid request body.');
+                console.log('Invalid request body.');
             }
 
             const formData=new FormData();
@@ -190,12 +190,12 @@ const AppointmentForm = () => {
                 <div className="flex flex-col space-y-4 mt-10">
                     <div className="space-y-8">
                         <div className="flex flex-row space-x-8">
-                            <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs" value={colId} onChange={(e) => setColId(e.target.value)}/>
-                            <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-full max-w-xs" value={clientName} onChange={(e) => setClientName(e.target.value)} />
+                            <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs"  onChange={(e) => setColId(e.target.value)}/>
+                            <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-full max-w-xs"  onChange={(e) => setClientName(e.target.value)} />
                         </div>
                         <div className="flex flex-row space-x-8">
-                            <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                            <input type="tel"  name='contactNo' placeholder="Contact Number" className="input input-bordered w-full max-w-xs" value={contactNo} onChange={(e) => setContactNo(e.target.value)}/>
+                            <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs"  onChange={(e) => setEmail(e.target.value)}/>
+                            <input type="tel"  name='contactNo' placeholder="Contact Number" className="input input-bordered w-full max-w-xs"  onChange={(e) => setContactNo(e.target.value)}/>
                         </div>
                     </div>
                     <div className="flex flex-row space-x-8">
@@ -213,7 +213,7 @@ const AppointmentForm = () => {
                             <label className="label">
                               <span className="label-text">Date of Birth</span>
                             </label>
-                            <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
+                            <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs"  onChange={(e) => setDateOfBirth(e.target.value)}/>
                         </div>
                     </div>
                     <div className="flex flex-row space-x-8">
