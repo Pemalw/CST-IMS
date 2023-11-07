@@ -5,7 +5,7 @@ import HotAppointmentTable from '../components/HotAppointmentTable';
 import AdminNavbar from '../components/adminNavbar';
 import Footer from '../components/Footer';
 import Inventory from '../components/Inventory.jsx';
-import AdminBlog from '../components/AdminBlog';
+import AdminBlog from '../components/AdminBlog.jsx';
 import DataAnalysis from '../components/DataAnalysis';
 import axios from 'axios';
 
