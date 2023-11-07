@@ -40,7 +40,7 @@ const Inventory = () => {
     };
   
     fetchInventoryItems()
-  }, []);
+  }, [inventoryItems]);
 
   //add new inventory item to database
   const addItem = async (e) => {

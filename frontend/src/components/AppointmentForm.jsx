@@ -13,6 +13,7 @@ const AppointmentForm = () => {
     const [contactNo, setContactNo] = useState(0);
     const [email, setEmail] = useState('');
     const [slots, setSlots] = useState([]);
+    const [states, setStates]=useState("");
 
     useEffect( () => {
         async function fetchdata(){
@@ -133,6 +134,14 @@ const AppointmentForm = () => {
             const response = await axios.post('http://localhost:5001/appointment/add/', formData, {
                 headers: requestHeaders,
             }).then(async()=>{
+
+                setStates("Successfully added!");
+                setClientName("");
+                setColId(0);
+                setContactNo(0);
+                setDateOfBirth(new Date());
+                setEmail("");
+                setGender("");
                 const hours = parseInt(appointTime.split(":")[0], 10);
                 let id;
                 let newslot;
@@ -181,12 +190,12 @@ const AppointmentForm = () => {
                 <div className="flex flex-col space-y-4 mt-10">
                     <div className="space-y-8">
                         <div className="flex flex-row space-x-8">
-                            <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs" onChange={(e) => setColId(e.target.value)}/>
-                            <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-full max-w-xs" onChange={(e) => setClientName(e.target.value)} />
+                            <input type="text" name='colId' placeholder="Student ID" className="input input-bordered w-full max-w-xs" value={colId} onChange={(e) => setColId(e.target.value)}/>
+                            <input type="text" name="clientName" placeholder="Name" className="input input-bordered w-full max-w-xs" value={clientName} onChange={(e) => setClientName(e.target.value)} />
                         </div>
                         <div className="flex flex-row space-x-8">
-                            <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs" onChange={(e) => setEmail(e.target.value)}/>
-                            <input type="tel"  name='contactNo' placeholder="Contact Number" className="input input-bordered w-full max-w-xs" onChange={(e) => setContactNo(e.target.value)}/>
+                            <input type="email" name='email' placeholder="Email" className="input input-bordered w-full max-w-xs" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <input type="tel"  name='contactNo' placeholder="Contact Number" className="input input-bordered w-full max-w-xs" value={contactNo} onChange={(e) => setContactNo(e.target.value)}/>
                         </div>
                     </div>
                     <div className="flex flex-row space-x-8">
@@ -204,7 +213,7 @@ const AppointmentForm = () => {
                             <label className="label">
                               <span className="label-text">Date of Birth</span>
                             </label>
-                            <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" onChange={(e) => setDateOfBirth(e.target.value)}/>
+                            <input type="date" name='dateOfBirth' placeholder="Date of Birth" className="input input-bordered w-full max-w-xs" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
                         </div>
                     </div>
                     <div className="flex flex-row space-x-8">
@@ -212,20 +221,23 @@ const AppointmentForm = () => {
                             <label className="label">
                               <span className="label-text">Appointment Date</span>
                             </label>
-                            <input type="date" name='appointDate'  placeholder="appointmentdate" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointDate(e.target.value)} />
+                            <input type="date" name='appointDate'  placeholder="appointmentdate" value={appointDate} className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointDate(e.target.value)} />
                         </div>
                         <div className="w-full">
                             <label className="label">
                               <span className="label-text">Appointment Time</span>
                             </label>
-                            <input type="time" name='appointTime' placeholder="appointmenttime" className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointTime(e.target.value)}/>
+                            <input type="time" name='appointTime' placeholder="appointmenttime" value={appointTime} className="input input-bordered w-full max-w-xs" onChange={(e) => setAppointTime(e.target.value)}/>
                         </div>
                     </div>
                     <div className="flex justify-center">
                         <button className="btn bg-[#bcdbe6] hover:bg-gradient-to-r from-[#2f5d6e] to-[#5c8a9c] hover:text-white w-32 mt-8 mb-12" type="submit" onClick={handleSubmit}>Register</button>
                     </div>
-                    
+                    {//pema can you design the below div
+                    }
+                    <div>{states}</div>
                 </div>
+                
             </form>
             </div>
         </div>
