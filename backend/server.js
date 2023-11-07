@@ -1,8 +1,9 @@
 const express = require('express');
 const cors= require('cors');
-const mongoose= require('mongoose')
+const mongoose= require('mongoose');
 const cron = require('node-cron');
 const dotenv = require('dotenv').config();
+const path=require('path');
 
 require('dotenv').config();
 
@@ -28,6 +29,7 @@ app.use('/report', Report);
 app.use('/slot', Slot);
 app.use('/item',List);
 app.use('/inventory',Inventory);
+app.use('/uploads', express.static(path.join('C:/Users/user/Documents/GitHub/CST-IMS-main/CST-IMS/backend', 'uploads')));
 
 cron.schedule('0 19 * * *', async() => {
 

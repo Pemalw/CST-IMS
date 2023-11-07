@@ -2,69 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
-// const Inventory = () => {
-//   // Sample inventory data
-//   const initialInventory = [
-//     { id: 1, name: 'Bandages', quantity: 100, expiryDate: '2023-12-31' },
-//     { id: 2, name: 'Painkillers', quantity: 50, expiryDate: '2023-10-15' },
-//     { id: 3, name: 'First Aid Kits', quantity: 20, expiryDate: '2024-05-20' },
-//     { id: 4, name: 'Adhesive Tape', quantity: 25, expiryDate: '2023-11-30' },
-//     { id: 5, name: 'Disposable Gloves', quantity: 30, expiryDate: '2023-12-10' },
-//   ];
-
-//   const [inventory, setInventory] = useState(initialInventory);
-//   const [editingItem, setEditingItem] = useState(null);
-
-//   const [newInventoryItem, setNewInventoryItem] = useState({
-//     inventory_name: '',
-//     quantity: 0,
-//     expiryDate: '',
-//   });
-
-//   const handleInputChange = (e) => {
-//     const { inventory_name, value } = e.target;
-//     setNewInventoryItem({
-//       ...newInventoryItem,
-//       [inventory_name]: inventory_name === 'quantity' ? parseInt(value, 10) : value,
-//     });
-//   };
-
-//   const handleAddItem = () => {
-//     // Generate a unique ID for the new item (You can use a library like 'uuid' for this)
-//     const newItemId = Date.now();
-
-//     // Create a new inventory item with the generated ID
-//     const newItem = { ...newInventoryItem, id: newItemId };
-
-//     // Add the new item to the inventory
-//     setInventory([...inventory, newItem]);
-
-//     // Reset the input fields
-//     setNewInventoryItem({
-//       inventory_name: '',
-//       quantity: 0,
-//       expiryDate: '',
-//     });
-//   };
-
-//   const handleEditClick = (item) => {
-//     setEditingItem(item);
-//   };
-
-//   const handleSaveEdit = (item) => {
-//     const updatedInventory = inventory.map((invItem) =>
-//       invItem.id === item.id ? item : invItem
-//     );
-//     setInventory(updatedInventory);
-//     setEditingItem(null);
-//   };
-
-//   const handleDeleteClick = (item) => {
-//     const updatedInventory = inventory.filter((invItem) => invItem.id !== item.id);
-//     setInventory(updatedInventory);
-//   };
-
-
 
 const Inventory = () => {
   const [postName, setPostName] = useState('');
