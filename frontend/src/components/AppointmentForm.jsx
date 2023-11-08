@@ -235,7 +235,7 @@ const AppointmentForm = () => {
                     </div>
                     {//pema can you design the below div
                     }
-                    <div>{states}</div>
+                    <div className="text-accent m-10 pb-10 text-center">{states}</div>
                 </div>
                 
             </form>

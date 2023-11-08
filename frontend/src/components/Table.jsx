@@ -25,10 +25,7 @@ function Table() {
     });
     }
     fetchdata();
-    const interval = setInterval(() => {
-      // Your code to be executed at regular intervals goes here
-      setCount(prevCount => prevCount + 1); // Increment count every second
-    }, 1000); // Interval in milliseconds (1000ms = 1 second)
+     // Interval in milliseconds (1000ms = 1 second)
     }, [dummyapp]
 );
 function calculateAge(dateOfBirth) {

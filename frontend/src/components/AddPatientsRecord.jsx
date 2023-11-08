@@ -122,7 +122,6 @@ const AddPatientRecord=(props)=>{
         const response = await axios.post('http://127.0.0.1:5001/report/add/', formData, {
                 headers: requestHeaders,
         }).then(async()=>{
-            setReportState("Successfully added");
             console.log("Succesfully added in report");
             setRecipient(filteredList.email);
             setSubject("Your Report Number");
@@ -142,14 +141,10 @@ const AddPatientRecord=(props)=>{
                 "message": reportNum, }),
               });
         
-              if (response.ok) {
-                setEailState("Succesfully sent the email");
-    
+              if (response.ok) {    
                 console.log('Email sent successfully');
               } else {
-                console.log(recipient);
-                console.log(subject);
-                console.log(message);
+                console.log(filteredList.email);
     
                 console.error(response.status);
                 console.error('Error sending email');
