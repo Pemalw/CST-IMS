@@ -3,13 +3,15 @@ import axios from 'axios';
 
 function PatientRec() {
   const [appointments, setAppointments]=useState([]);
+  const [filtered, setFiltered]=useState([]);
   
 
   useEffect( () => {
     async function fetchdata(){
-        await axios.get('http://127.0.0.1:5001/appointment')
+        await axios.get('http://127.0.0.1:5001/report')
     .then((response) => {
         setAppointments(response.data);
+        setFiltered(response.data);
         
 
     })
@@ -46,7 +48,7 @@ const handleSearch = () => {
     });
   
     // Update the appointments list with the filtered results
-    setAppointments(filteredAppointments);
+    setFiltered(filteredAppointments);
   };
 
   return (
@@ -71,15 +73,15 @@ const handleSearch = () => {
             </thead>
             <tbody className='tbody-light'>
             
-                {appointments.map(app => (
+                {filtered.map(app => (
                 <tr key={app._id}>
                     <td className="font-light text-left border-b p-4 " >{app.colId}</td>
                     <td className="font-light text-left border-b p-4 " >{app.clientName}</td>
                     <td className="font-light text-left border-b p-4 " >{app.gender}</td>
-                    <td className="font-light text-left border-b p-4 " >{calculateAge(app.dateOfBirth)}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.age}</td>
                     <td className="font-light text-left border-b p-4 " >{app.contactNo}</td>
                     <td className="font-light text-left border-b p-4 " >{app.email}</td>
-                    <td className="font-light text-left border-b p-4 " >{app.appointTime}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.time}</td>
                 </tr>
                 ))}
             </tbody>

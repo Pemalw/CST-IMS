@@ -1,6 +1,8 @@
 import {React, useState, useEffect} from 'react'
 import axios from 'axios';
-import logo2 from '../assets/images/logo2.png';
+import logo2 from '../assets/logo2.png';
+import jsPDF from 'jspdf';
+
 
 export const MedicalReport = () => {
 
@@ -30,6 +32,58 @@ export const MedicalReport = () => {
       fetchdata();
       }, [reports]
   );
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+// Set font family and size
+doc.setFont('helvetica', 'bold');
+
+// Add report title
+doc.setFontSize(16);
+doc.text('Infirmary Report', 80, 20);
+
+// Add report details
+doc.setFontSize(12);
+doc.text('Report No:', 30, 40);
+doc.text(reportNo, 70, 40);
+
+doc.text('Client Name:', 30, 50);
+doc.text(clientName, 80, 50);
+
+doc.text('Time:', 30, 60);
+doc.text(time, 50, 60);
+
+doc.text('Date:', 30, 70);
+doc.text(date.toString(), 40, 70);
+
+// Add patient information
+doc.text('Age:', 120, 40);
+doc.text(age.toString(), 140, 40);
+
+doc.text('Gender:', 140, 50);
+doc.text(gender, 160, 50);
+
+doc.text('Col ID:', 80, 60);
+doc.text(colId.toString(), 100, 60);
+
+doc.text('Contact No:', 130, 70);
+doc.text(contactNo.toString(), 160, 70);
+
+doc.text('Email:', 120, 80);
+doc.text(email, 140, 80);
+
+// Add diagnosis and medication
+doc.text('Diagnosis:', 30, 120);
+doc.text(diagnosis, 70, 120);
+
+doc.text('Medication Prescribed:', 30, 130);
+doc.text(medicinePrescribed, 100, 130);
+
+// Generate the PDF document
+doc.save('infirmary-report.pdf');
+    
+  };
 
   const search=(e)=>{
     e.preventDefault();
@@ -61,6 +115,7 @@ export const MedicalReport = () => {
         console.log("success");
       } 
     });
+    document.getElementById('my_modal').showModal();
 
   }
 
@@ -77,7 +132,7 @@ export const MedicalReport = () => {
           <div className="max-w-md">
             <input type="text" placeholder="Enter Code Number " className="input input-bordered w-full max-w-xs" onChange={(e) => setReportNo(e.target.value)}/>
             <p className="py-6 text-[#dc2626] "> NOTE: The medical code number will be provided through the email. From that email enter the code to generate your medical report and veiw it. facere quidem velit fuga?</p>
-            <button className="btn btn-accent bg-[#003046] text-base-100 border-0" onClick={()=>document.getElementById('my_modal').showModal()}>Submit</button>
+            <button className="btn btn-accent bg-[#003046] text-base-100 border-0" onClick={search}>Submit</button>
             <dialog id="my_modal" className="modal">
               <div className="modal-box w-11/12 max-w-5xl bg-slate-50">
                 <form method="dialog">
@@ -110,7 +165,7 @@ export const MedicalReport = () => {
                       </div>
                     </div>
                     <div>
-                    <button className="btn bg-[#003046] text-base-200 btn-accent border-0 w-32 mt-8 mb-12" type="submit">Download</button>
+                    <button className="btn bg-[#003046] text-base-200 btn-accent border-0 w-32 mt-8 mb-12" type="submit" onClick={()=>{generatePDF()}}>Download</button>
                     </div>
                   </div>
                 </div>

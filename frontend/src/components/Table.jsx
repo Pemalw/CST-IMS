@@ -5,6 +5,7 @@ import PatientRec from './PatientRec';
 
 function Table() {
   const [appointments, setAppointments]=useState([]);
+  const [dummyapp, setdummyapp]=useState([]);
   const [filteredList, setFilterList]=useState([]);
   const [selectedId, setSelectedId] = useState();
 
@@ -13,6 +14,7 @@ function Table() {
         await axios.get('http://127.0.0.1:5001/appointment')
     .then((response) => {
         setAppointments(response.data);
+        setdummyapp(response.data);
         const filterList = appointments.filter(appointment => appointment.state === 'yes');
         filterList.reverse();
         setFilterList(filterList);
@@ -23,7 +25,11 @@ function Table() {
     });
     }
     fetchdata();
-    }, [appointments]
+    const interval = setInterval(() => {
+      // Your code to be executed at regular intervals goes here
+      setCount(prevCount => prevCount + 1); // Increment count every second
+    }, 1000); // Interval in milliseconds (1000ms = 1 second)
+    }, [dummyapp]
 );
 function calculateAge(dateOfBirth) {
   const birthDate = new Date(dateOfBirth);
