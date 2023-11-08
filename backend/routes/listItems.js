@@ -6,8 +6,6 @@ const itemModel = require('../models/listItems');
 
 
 
-
-//lets create second route -- get data from database
 router.get('/', async (req, res)=>{
     try{
         const allItems = await itemModel.find({});
@@ -16,6 +14,7 @@ router.get('/', async (req, res)=>{
         res.json(err);
     }
 })
+
 
 //lets create second route -- get data from database
 router.get('/:id', async (req, res)=>{
@@ -32,6 +31,7 @@ router.get('/:id', async (req, res)=>{
 })
 
 
+
 //first route -- we will add Todo Item to our database
 router.post('/add', async (req, res) =>{
     try{
@@ -41,9 +41,8 @@ router.post('/add', async (req, res) =>{
             !req.body.date||
             !req.body.content||
             !req.body.source||
-            !req.body.image
-
-
+            !req.body.image||
+            !req.body.content
 
             // !req.body.image
         ) {
@@ -72,7 +71,6 @@ router.post('/add', async (req, res) =>{
         console.log(err)
     }
 })
-
 
 
 //let's update item

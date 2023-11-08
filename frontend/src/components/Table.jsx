@@ -43,9 +43,10 @@ const openModal = (id) => {
 };
 
   return (
-    <div className="flex justify-center my-16">
+    <div className="flex flex-col justify-center my-16">
+      <div className="flex justify-center">
         <table className="table-auto w-5/6">
-            <caption className='text-left text-xl font-bold drop-shadow-4 mb-10'>Patient List</caption>
+            <caption className='text-left md:text-2xl text-xl indent-4 font-bold drop-shadow-4 mb-10'>Patient List</caption>
             <thead className='thead-light border-b-2'>
                 <tr>
                   <th>StdID</th>
@@ -93,8 +94,38 @@ const openModal = (id) => {
                 ))}
             </tbody>
         </table>
+      </div>
+      <div className="flex justify-center mt-20">
+        <table className="table-auto w-5/6">
+            <caption className='text-left text-xl md:text-2xl indent-4 font-bold drop-shadow-4 mb-10'>Patient Records</caption>
+            <thead className='thead-light border-b-2'>
+                <tr>
+                  <th>StdID</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>ContactNo</th>
+                  <th>Email</th>
+                  <th>Time</th>
+                </tr>
+            </thead>
+            <tbody className='tbody-light'>
+            
+                {filteredList.map(app => (
+                <tr key={app._id}>
+                    <td className="font-light text-left border-b p-4 " >{app.colId}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.clientName}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.gender}</td>
+                    <td className="font-light text-left border-b p-4 " >{calculateAge(app.dateOfBirth)}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.contactNo}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.email}</td>
+                    <td className="font-light text-left border-b p-4 " >{app.appointTime}</td>
+                </tr>
+                ))}
+            </tbody>
+        </table>
+      </div>
     </div>
-    
   );
 }
 

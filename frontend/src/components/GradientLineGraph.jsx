@@ -20,9 +20,9 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, 
 const GradientLineGraph = () => {
 
   const [report, setReport]=useState([]);
+  const [studentCount, setStudentCounts]=useState(0);
   const [lab, setLab]=useState([]);
   const [counts, setCounts]=useState([]);
-  const [studentCount, setStudentCounts]=useState(0);
 
   useEffect( () => {
     async function fetchdata(){

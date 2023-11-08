@@ -13,6 +13,7 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import SinglePost from "./components/Single"
 import AdminBlog from "./components/AdminBlog"
 import LoginForm from "./components/LoginForm"
+import Error from "./components/ErrorPage"
 
 
 
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <NavbarLayout><HomePage /></NavbarLayout>,
     errorElement:<h1 className="flex">Opps</h1>
+  
+  },
+  {
+    path: "*",
+    element: <Error/>,
   
   },
   {
