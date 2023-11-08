@@ -1,5 +1,6 @@
 import {React,useState, useEffect} from 'react';
 import axios from 'axios';
+import {ImSearch} from 'react-icons/im'
 
 function PatientRec() {
   const [appointments, setAppointments]=useState([]);
@@ -52,13 +53,18 @@ const handleSearch = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center my-16">
-      <div className="flex justify-center mt-20">
-        <div className="felx search-bar justify-center">
-            <input type="text" placeholder="Search by name, email, or contact number" id="search" />
-            <button onClick={() => handleSearch()}>Search</button>
+    <div className="flex justify-center my-16">
+      <div className="flex flex-col mt-20 w-full">
+        <div className="search-bar flex self-center border rounded-lg p-2 mb-8 w-auto">
+            <input type="text" className="p-2 rounded-xl w-96" placeholder="Search by name, email, or contact number" id="search" />
+            <button onClick={() => handleSearch()} className="btn">
+              <div className="w-4 h-4 m-2">
+                <ImSearch />
+              </div>
+            </button>
         </div>
-        <table className="table-auto w-5/6">
+        <div className="flex place-content-center w-full">
+          <table className="table-auto w-5/6">
             <caption className='text-left text-xl md:text-2xl indent-4 font-bold drop-shadow-4 mb-10'>Patient Records</caption>
             <thead className='thead-light border-b-2'>
                 <tr>
@@ -85,7 +91,8 @@ const handleSearch = () => {
                 </tr>
                 ))}
             </tbody>
-        </table>
+          </table>
+        </div>
       </div>
     </div>
   );

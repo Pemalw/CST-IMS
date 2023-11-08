@@ -51,7 +51,7 @@ const openModal = (id) => {
 
   return (
     <div className="flex flex-col justify-center my-16">
-      <div className="flex justify-center">
+      <div className="flex flex-1 justify-center">
         <table className="table-auto w-5/6">
             <caption className='text-left md:text-2xl text-xl indent-4 font-bold drop-shadow-4 mb-10'>Patient List</caption>
             <thead className='thead-light border-b-2'>
@@ -102,8 +102,9 @@ const openModal = (id) => {
             </tbody>
         </table>
       </div>
-      
-      <PatientRec/>
+      <div className="">
+        <PatientRec/>
+      </div>
     </div>
   );
 }
