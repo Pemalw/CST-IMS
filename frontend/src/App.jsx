@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <NavbarLayout><HomePage /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
   
   },
   {
@@ -32,47 +32,47 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <NavbarLayout><About /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
   },
   {
     path: "/appointment",
     element: <NavbarLayout><Appointment /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
 
   },
   {
     path: "/health-awareness",
     element: <NavbarLayout><HealthAwareness /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>,
+    errorElement:<h1 className="flex"><Error/></h1>,
   
   },
   {
     path: "/medical-report",
     element: <NavbarLayout><MedicalReport /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
 
   },
   {
     path: "/admin",
     element: <DashBoard />,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
   },
   
   {
     path: "/adminBlog",
     element: <AdminBlog/>,
-    errorElement:<h1 className="flex">Opps</h1>
+    errorElement:<h1 className="flex"><Error/></h1>
   },
   {
     path: "/SinglePost-page/:id",
     element: <NavbarLayout><SinglePost /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>,
+    errorElement:<h1 className="flex"><Error/></h1>,
   
   },
   {
     path: "/login",
     element: <NavbarLayout><LoginForm /></NavbarLayout>,
-    errorElement:<h1 className="flex">Opps</h1>,
+    errorElement:<h1 className="flex"><Error/></h1>,
   
   },
   
