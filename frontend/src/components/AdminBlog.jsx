@@ -127,66 +127,68 @@ const AdminBlog = () => {
     const selectedItem = ListItems.find((item) => item._id === isUpdating);
      
     return (
+      <div>
+        <form className="flex flex-col w-full my-7" onSubmit={(e) => updateItem(e)}>
+        <input
+          className="mb-2 p-2 border rounded-md"
+          type="text"
+          placeholder="New Title"
+          onChange={(e) => setUpdateTitle(e.target.value)}
+          value={updateTitle || selectedItem.title}
+        />
+        <input
+          className="mb-2 p-2 border rounded-md"
+          type="date"
+          placeholder="New Date"
+          onChange={(e) => setUpdateDate(e.target.value)}
+          value={updateDate || selectedItem.date}
+        />
 
-   <form className="flex flex-col w-full my-7" onSubmit={(e) => updateItem(e)}>
+        <textarea
+              className="mb-2 p-2 border rounded-md w-full h-32"
+              type="text"
+              placeholder="New Content"
+              value={updateContent || selectedItem.content}
+              onChange={e => setUpdateContent(e.target.value)} 
+            />
 
-      <input
-        className="mb-2 p-2 border rounded-md"
-        type="text"
-        placeholder="New Title"
-        onChange={(e) => setUpdateTitle(e.target.value)}
-        value={updateTitle || selectedItem.title}
-      />
-      <input
-        className="mb-2 p-2 border rounded-md"
-        type="date"
-        placeholder="New Date"
-        onChange={(e) => setUpdateDate(e.target.value)}
-        value={updateDate || selectedItem.date}
-      />
+        {/* ... Other input fields */}
+        <input
+          className="file-input file-input-bordered w-full max-w-xs mr-3"
+          type="file"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            // Do not set state with the file object directly
+            // Store the file object for submission instead
+            setUpdateImage(file);
+          }}
+        />
+        {/* <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Update
+        </button> */}
 
-      <textarea
-            className="mb-2 p-2 border rounded-md w-full h-32"
-            type="text"
-            placeholder="New Content"
-            value={updateContent || selectedItem.content}
-            onChange={e => setUpdateContent(e.target.value)} 
-          />
+        <div className="flex mt-4">
 
-      {/* ... Other input fields */}
-      <input
-        className="file-input file-input-bordered w-full max-w-xs mr-3"
-        type="file"
-        onChange={(e) => {
-          const file = e.target.files[0];
-          // Do not set state with the file object directly
-          // Store the file object for submission instead
-          setUpdateImage(file);
-        }}
-      />
-      {/* <button
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        type="submit"
-      >
-        Update
-      </button> */}
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+              onClick={(e) => updateItem(e)}>
+              Update
+            </button>
+            <button
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              type="button"
+              onClick={() => setIsUpdating('')}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
 
-     <div className="flex mt-4">
-
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-            onClick={(e) => updateItem(e)}>
-            Update
-          </button>
-          <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={() => setIsUpdating('')}
-          >
-            Cancel
-          </button>
-        </div>
-    </form>
+   
 
 
 
@@ -196,7 +198,7 @@ const AdminBlog = () => {
 
   return (
     <div className="flex flex-wrap justify-center">
-     <div className="mx-4/6 p-4">
+     <div className="mx-4/6 p-4 w-4/6">
          <h1 className="text-2xl font-bold my-8" >Admin Blog</h1>
          <p className="text-lg mb-8">Add health articles/news</p>
 

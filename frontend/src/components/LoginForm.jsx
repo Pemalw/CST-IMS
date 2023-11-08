@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {BiSolidUserCircle} from'react-icons/bi';
+import logo1 from '../assets/images/logo1.png';
+
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -24,13 +26,14 @@ const LoginForm = () => {
 
   return (
     <div className="my-4 flex justify-center self-center">
-        <form onSubmit={handleSubmit} className="m-10 p-5 self-center md:w-1/3 w-auto border-2 rounded-lg shadow-md opacity-90 bg-[#003046]">
+        <form onSubmit={handleSubmit} className="m-10 p-5 self-center md:w-1/3 w-auto border-2 rounded-lg shadow-md opacity-90 bg-base-200">
           <div className="flex flex-col justify-center">
-            <div className="flex justify-center pt-5">
-              <BiSolidUserCircle className="w-12 h-12 text-white"/>
+            <div className="flex justify-center">
+              {/* <BiSolidUserCircle className="w-12 h-12 text-white"/> */}
+              <img src={logo1} className="w-72 h-auto" /> 
             </div>
             <div className="my-4 flex flex-col mx-8">
-              <label htmlFor="username" className="block text-md font-medium text-white text-bold">Username</label>
+              <label htmlFor="username" className="block text-md font-medium text-[#003046] text-bold">Username</label>
               <input
                   type="text"
                   name="username"
@@ -41,7 +44,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="mb-4 flex flex-col mx-8">
-              <label htmlFor="password" className="block text-md font-medium text-white text-bold">Password</label>
+              <label htmlFor="password" className="block text-md font-medium text-[#003046] text-bold">Password</label>
               <input
                   type="password"
                   name="password"
@@ -52,7 +55,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="flex justify-center">
-              <button type="submit" className="btn font-bold ms-4 my-4 hover:text-white hover:bg-[#003046]">Login</button>
+              <button type="submit" className="btn btn-accent font-bold ms-4 my-4 hover:text-white hover:bg-[#003046]">Login</button>
             </div>
           </div>
         </form>
