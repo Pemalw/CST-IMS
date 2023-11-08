@@ -26,6 +26,8 @@ const Inventory = () => {
     setUpdatePostQuantity('');
     setUpdatePostDate('');
   };
+
+  
   useEffect(()=>{
     const fetchInventoryItems = async() =>{
   

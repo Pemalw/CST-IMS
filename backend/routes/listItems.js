@@ -5,6 +5,7 @@ const { request, response } = require('express');
 const itemModel = require('../models/listItems');
 
 
+
 router.get('/', async (req, res)=>{
     try{
         const allItems = await itemModel.find({});
@@ -14,6 +15,23 @@ router.get('/', async (req, res)=>{
     }
 })
 
+
+//lets create second route -- get data from database
+router.get('/:id', async (req, res)=>{
+    try {
+        const itemId = req.params.id;
+        const item = await itemModel.findById(itemId);
+        if (!item) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+        res.status(200).json(item);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+
+
 //first route -- we will add Todo Item to our database
 router.post('/add', async (req, res) =>{
     try{
@@ -21,6 +39,9 @@ router.post('/add', async (req, res) =>{
         if (
             !req.body.title||
             !req.body.date||
+            !req.body.content||
+            !req.body.source||
+            !req.body.image||
             !req.body.content
 
             // !req.body.image
@@ -34,6 +55,9 @@ router.post('/add', async (req, res) =>{
             title: req.body.title, 
             date: req.body.date,
             content: req.body.content,
+            source: req.body.source,
+            image: req.body.image
+
 
             // image: req.body.image
 
@@ -48,15 +72,13 @@ router.post('/add', async (req, res) =>{
     }
 })
 
-//lets create second route -- get data from database
-
 
 //let's update item
 router.put('/adds/:id', async (req, res) =>{
     try{
         
      //find the item by its id and update it
-     const updateItem =  await itemModel.findByIdAndUpdate(req.params.id, {$set: req.body});
+     const updateItem =  await itemModel.findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true } );
      res.status(200).json('Item Updated');
     }catch(err){
         res.json(err);
